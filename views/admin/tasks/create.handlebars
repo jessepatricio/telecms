@@ -1,0 +1,23 @@
+<h1>Create Task</h1>
+
+{{#each errors}}
+<div class="alert alert-danger">
+    {{message}}
+</div>
+{{/each}}
+
+<form action="/admin/tasks/create" method="POST">
+    <div class="form-group">
+        <label for="code">Code</label>
+        <input name="code" type="text" class="form-control" placeholder="Enter code" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" cols="30" rows="10" type="text" class="form-control" id="description" placeholder="Enter Description"
+            required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm">Create Task</button>
+    <a href="/admin/tasks" class="btn btn-secondary btn-sm">Cancel</a>
+</form>
