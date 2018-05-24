@@ -109,6 +109,22 @@ router.post('/register', (req, res) => {
     }
 });
 
+router.delete('/:id', (req, res) => {
+
+    //remove record 
+    User.findOne({
+            _id: req.params.id
+        })
+        .then(user => {
+            user.remove().then(userRemoved => {
+                req.flash('success_message', 'User was successfully deleted!');
+                res.redirect('/admin/userlist');
+            });
+        });
+
+});
+
+
 
 router.get('/userlist', (req, res) => {
     User.find({})
