@@ -80,34 +80,35 @@ router.post('/create', (req, res) => {
         newJob.save().then(savedJob => {
             req.flash('success_message', 'Job successfully added!');
 
-            //send sms
-            Job.findById({
-                    _id: savedJob.id
-                })
-                .populate('plan')
-                .populate('task')
-                .populate('user')
-                .then(job => {
+            if (req.body.allowNotify === 'on') {
 
-                    //console.log(job.plan.lno);
+                //send sms
+                Job.findById({
+                        _id: savedJob.id
+                    })
+                    .populate('plan')
+                    .populate('task')
+                    .populate('user')
+                    .then(job => {
 
-                    let message = job.plan.lno + '|' + job.task.description +
-                        '|' + job.user.firstname + '|' + job.date + '|' + job.status;
+                        let message = job.plan.lno + '|' + job.task.description +
+                            '|' + job.user.firstname + '|' + job.date + '|' + job.status;
 
-                    //console.log(message);
-                    //send sms
-                    nexmo.message.sendSms(
-                        YOUR_VIRTUAL_NUMBER, jesse_phone, message,
-                        (err, responseData) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.dir(responseData);
+                        nexmo.message.sendSms(
+                            YOUR_VIRTUAL_NUMBER, jesse_phone, message,
+                            (err, responseData) => {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.dir(responseData);
+                                    console.log('notification sent.');
+                                }
                             }
-                        }
-                    );
-
-                });
+                        );
+                    });
+            } else {
+                console.log('no notification sent.');
+            }
 
 
             res.redirect('/admin/jobs');
@@ -150,7 +151,40 @@ router.put('/edit/:id', (req, res) => {
         job.status = req.body.status;
         job.save().then(updatedJob => {
             req.flash('success_message', 'Job was successfully updated!');
+
+            if (req.body.allowNotify === 'on') {
+                //send sms
+                Job.findById({
+                        _id: updatedJob.id
+                    })
+                    .populate('plan')
+                    .populate('task')
+                    .populate('user')
+                    .then(job => {
+
+                        let message = job.plan.lno + '|' + job.task.description +
+                            '|' + job.user.firstname + '|' + job.date + '|' + job.status;
+
+                        nexmo.message.sendSms(
+                            YOUR_VIRTUAL_NUMBER, jesse_phone, message,
+                            (err, responseData) => {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.dir(responseData);
+                                    console.log('notification sent.');
+                                }
+                            }
+                        );
+
+
+                    });
+            } else {
+                console.log('no notification sent.');
+            }
+
             res.redirect('/admin/jobs');
+
         }).catch(error => {
             console.log('could not save edited job! [' + error + ']');
         });
