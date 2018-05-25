@@ -53,6 +53,9 @@ app.use(methodOverride('_method'));
 const login = require('./routes/login/index');
 const admin = require('./routes/admin/index');
 const tasks = require('./routes/admin/tasks');
+const users = require('./routes/admin/users');
+const roles = require('./routes/admin/roles');
+
 
 
 //session
@@ -82,7 +85,10 @@ app.use((req, res, next) => {
 //use routes
 app.use('/', login);
 app.use('/admin', admin);
+app.use('/admin/users', users);
 app.use('/admin/tasks', tasks);
+app.use('/admin/roles', roles);
+
 
 
 const port = process.env.PORT || 8888;

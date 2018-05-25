@@ -4,6 +4,13 @@ const Schema = mongoose.Schema;
 //define the schema
 const UserSchema = new Schema({
 
+
+    //relationships
+    rolename: {
+        type: Schema.Types.ObjectId,
+        ref: 'roles'
+    },
+
     firstname: {
         type: String,
         required: true
@@ -24,17 +31,14 @@ const UserSchema = new Schema({
         required: true
     },
 
-    role: {
-        type: String,
-        default: 'user',
-    },
-
     date: {
         type: Date,
         default: Date.now()
     }
 
 
+}, {
+    usePushEach: true
 });
 
 
