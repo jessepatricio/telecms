@@ -1,0 +1,56 @@
+<h1>Edit User</h1>
+
+<form action="/admin/users/edit/{{id}}?_method=PUT" method="POST">
+    <div class="form-group">
+        <label for="inputfirstname">Firstname</label>
+        <input name="firstname" type="text" class="form-control" value="{{firstname}}">
+    </div>
+
+    <div class="form-group">
+        <label for="inputlastname">Lastname</label>
+        <input name="lastname" type="text" class="form-control" value="{{lastname}}">
+    </div>
+
+    <div class="form-group">
+        <label for="InputEmail">Email address</label>
+        <input value="{{email}}" required name="email" class="form-control" id="InputEmail" type="email" aria-describedby="emailHelp"
+            placeholder="Enter email">
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="InputRole">Role</label>
+        <select name="role" id="role" class="form-control">
+
+            {{#select user.role}} {{#each roles}}
+            <option value="{{id}}">{{role}}</option>
+            {{/each}} {{/select}}
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="title">Status</label>
+        <select name="status" id="status" class="form-control">
+            {{#select post.status}}
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+            <option value="draft">Draft</option>
+            {{/select}}
+        </select>
+    </div>
+
+    <div class="form-check">
+        <label for="allowComments" class="form-check-label">
+            <input name="allowComments" type="checkbox" class="form-check-input" id="allowComments" {{#if post.allowComments}} checked="checked"
+                {{/if}}> Allow Comments
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea name="body" cols="30" rows="10" type="text" class="form-control" id="body">{{post.body}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Update Post</button>
+    <a href="/admin/posts" class="btn btn-secondary btn-sm">Cancel</a>
+</form>

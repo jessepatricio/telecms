@@ -1,0 +1,16 @@
+<h1>Create Role</h1>
+
+{{#each errors}}
+<div class="alert alert-danger">
+    {{message}}
+</div>
+{{/each}}
+
+<form action="/admin/roles/create" method="POST">
+    <div class="form-group">
+        <label for="inputRole">Role</label>
+        <input name="rolename" type="text" class="form-control" placeholder="Enter role" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+    <a href="/admin/roles" class="btn btn-secondary btn-sm">Cancel</a>
+</form>

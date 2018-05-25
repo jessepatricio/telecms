@@ -1,0 +1,10 @@
+<h1>Edit Role</h1>
+
+<form action="/admin/roles/edit/{{role.id}}?_method=PUT" method="POST">
+    <div class="form-group">
+        <label for="labelRole">Role</label>
+        <input name="rolename" type="text" class="form-control" value="{{role.rolename}}">
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Update Role</button>
+    <a href="/admin/posts" class="btn btn-secondary btn-sm">Cancel</a>
+</form>

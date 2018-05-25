@@ -1,0 +1,49 @@
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Create User</div>
+    <div class="card-body">
+        <form action="/admin/users/create" method="post">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="InputName">First name</label>
+                        <input value="{{firstname}}" required name="firstname" class="form-control" id="InputName" type="text" aria-describedby="nameHelp"
+                            placeholder="Enter first name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="InputLastName">Last name</label>
+                        <input value="{{lastname}}" required name="lastname" class="form-control" id="InputLastName" type="text" aria-describedby="nameHelp"
+                            placeholder="Enter last name">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InputEmail1">Email address</label>
+                <input value="{{email}}" required name="email" class="form-control" id="InputEmail1" type="email" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="inputrole">Role</label>
+                <select name="role" id="role" class="form-control">
+
+                    {{#each roles}}
+                    <option value="{{id}}">{{role}}</option>
+                    {{/each}}
+
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="InputPassword1">Password</label>
+                        <input required name="password" class="form-control" id="InputPassword1" type="password" placeholder="Password">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ConfirmPassword">Confirm password</label>
+                        <input required name="passwordConfirm" class="form-control" id="ConfirmPassword" type="password" placeholder="Confirm password">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+        </form>
+    </div>
+</div>
