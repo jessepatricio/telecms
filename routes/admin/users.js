@@ -13,7 +13,7 @@ router.all('/*', (req, res, next) => {
 
 router.get('/', (req, res) => {
     User.find({})
-        .populate('rolename')
+        .populate('role')
         .then(users => {
             res.render('admin/users', {
                 users: users
@@ -114,6 +114,45 @@ router.post('/create', (req, res) => {
     }
 });
 
+router.get('/edit/:id', (req, res) => {
+    User.findOne({
+        _id: req.params.id
+    }).then(user => {
+        Role.find({}).then(roles => {
+            res.render('admin/users/edit', {
+                user: user,
+                roles: roles
+            });
+        });
+    });
+
+
+});
+
+
+router.put('/edit/:id', (req, res) => {
+    //console.log(req.params.id);
+    User.findOne({
+        _id: req.params.id
+    }).then(user => {
+
+        user.firstname = req.body.firstname;
+        user.lastname = req.body.lastname;
+        user.email = req.body.email;
+        user.role = req.body.role;
+        user.save().then(updatedUser => {
+            req.flash('success_message', 'User was successfully updated!');
+            res.redirect('/admin/users');
+        }).catch(error => {
+            console.log('could not save edited user! [' + error + ']');
+        });
+
+    }).catch(error => {
+        console.log('could not find id: ' + req.params.id);
+    });
+});
+
+
 router.delete('/:id', (req, res) => {
 
     //remove record 
@@ -128,9 +167,5 @@ router.delete('/:id', (req, res) => {
         });
 
 });
-
-
-
-
 
 module.exports = router;

@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 //define the schema
 const UserSchema = new Schema({
 
-
     //relationships
-    rolename: {
+    role: {
         type: Schema.Types.ObjectId,
         ref: 'roles'
     },

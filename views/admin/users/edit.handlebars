@@ -1,56 +1,51 @@
-<h1>Edit User</h1>
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Edit User</div>
+    <div class="card-body">
+        <form action="/admin/users/edit/{{user.id}}?_method=PUT" method="post">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="InputName">First name</label>
+                        <input value="{{user.firstname}}" required name="firstname" class="form-control" id="InputName" type="text" aria-describedby="nameHelp"
+                            placeholder="Enter first name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="InputLastName">Last name</label>
+                        <input value="{{user.lastname}}" required name="lastname" class="form-control" id="InputLastName" type="text" aria-describedby="nameHelp"
+                            placeholder="Enter last name">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InputEmail1">Email address</label>
+                <input value="{{user.email}}" required name="email" class="form-control" id="InputEmail1" type="email" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select name="role" id="role" class="form-control">
 
-<form action="/admin/users/edit/{{id}}?_method=PUT" method="POST">
-    <div class="form-group">
-        <label for="inputfirstname">Firstname</label>
-        <input name="firstname" type="text" class="form-control" value="{{firstname}}">
+                    {{#select user.role}} {{#each roles}}
+                    <option value="{{id}}">{{rolename}}</option>
+                    {{/each}} {{/select}}
+
+                </select>
+            </div>
+
+            {{!--
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="InputPassword1">Password</label>
+                        <input required name="password" class="form-control" id="InputPassword1" type="password" placeholder="Password">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ConfirmPassword">Confirm password</label>
+                        <input required name="passwordConfirm" class="form-control" id="ConfirmPassword" type="password" placeholder="Confirm password">
+                    </div>
+                </div>
+            </div> --}}
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="inputlastname">Lastname</label>
-        <input name="lastname" type="text" class="form-control" value="{{lastname}}">
-    </div>
-
-    <div class="form-group">
-        <label for="InputEmail">Email address</label>
-        <input value="{{email}}" required name="email" class="form-control" id="InputEmail" type="email" aria-describedby="emailHelp"
-            placeholder="Enter email">
-    </div>
-
-
-
-    <div class="form-group">
-        <label for="InputRole">Role</label>
-        <select name="role" id="role" class="form-control">
-
-            {{#select user.role}} {{#each roles}}
-            <option value="{{id}}">{{role}}</option>
-            {{/each}} {{/select}}
-
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="title">Status</label>
-        <select name="status" id="status" class="form-control">
-            {{#select post.status}}
-            <option value="public">Public</option>
-            <option value="private">Private</option>
-            <option value="draft">Draft</option>
-            {{/select}}
-        </select>
-    </div>
-
-    <div class="form-check">
-        <label for="allowComments" class="form-check-label">
-            <input name="allowComments" type="checkbox" class="form-check-input" id="allowComments" {{#if post.allowComments}} checked="checked"
-                {{/if}}> Allow Comments
-        </label>
-    </div>
-    <div class="form-group">
-        <label for="body">Body</label>
-        <textarea name="body" cols="30" rows="10" type="text" class="form-control" id="body">{{post.body}}</textarea>
-    </div>
-    <button type="submit" class="btn btn-primary btn-sm">Update Post</button>
-    <a href="/admin/posts" class="btn btn-secondary btn-sm">Cancel</a>
-</form>
+</div>
