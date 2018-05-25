@@ -8,12 +8,23 @@ router.all('/*', (req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-    Task.find({}).then(tasks => {
-        //console.log('Displaying all tasks.');
-        res.render('admin/tasks', {
-            tasks: tasks
+    const perPage = 10;
+    const page = req.query.page || 1;
+
+    Task.find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .then(tasks => {
+
+            Task.count().then(taskCount => {
+                res.render('admin/tasks', {
+                    tasks: tasks,
+                    current: parseInt(page),
+                    pages: Math.ceil(taskCount / perPage)
+                });
+
+            });
         });
-    });
 
 });
 
