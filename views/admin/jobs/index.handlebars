@@ -1,34 +1,36 @@
 <div class="row">
     <div class="table-responsive-sm col-sm-8">
-        <h2>User List</h2>
+        <h2>Job List</h2>
         <div style="margin-bottom: 15px;">
-            <a href="/admin/users/create" class="btn btn-success btn-sm">Create</a>
+            <a href="/admin/jobs/create" class="btn btn-success btn-sm">Create</a>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Role</th>
+                    <th>Plan</th>
+                    <th>Tasks</th>
+                    <th>AssignedTo</th>
+                    <th>Status</th>
+                    <th>Comments</th>
                     <th>Date</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {{#each users}}
+                {{#each jobs}}
                 <tr>
-                    <td>{{firstname}}</td>
-                    <td>{{lastname}}</td>
-                    <td>{{email}}</td>
-                    <td>{{role.rolename}}</td>
+                    <td>{{plan.lno}}</td>
+                    <td>{{task.description}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{status}}</td>
+                    <td>{{comments}}</td>
                     <td>{{formatDate date 'DD/MM/YYYY'}}</td>
                     <td>
-                        <a href="/admin/users/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                        <a href="/admin/jobs/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
                     </td>
                     <td>
-                        <form action="/admin/users/{{id}}?_method=DELETE" method="post">
+                        <form action="/admin/jobs/{{id}}?_method=DELETE" method="post">
                             <button class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
@@ -37,6 +39,4 @@
             </tbody>
         </table>
     </div>
-
-
 </div>

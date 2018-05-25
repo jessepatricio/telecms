@@ -1,46 +1,47 @@
-// const mongoose = require('mongoose');
-// //use mongoose schema
-// const Schema = mongoose.Schema;
-// //define the schema
-// const JobSchema = new Schema({
+const mongoose = require('mongoose');
+//use mongoose schema
+const Schema = mongoose.Schema;
+//define the schema
+const JobSchema = new Schema({
 
-//     //relationship
+    //relationship
 
-//     user: {
-//         type: Schema.Types.ObjectId,
-//         ref: 'users'
-//     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
 
-//     //fields
+    plan: {
+        type: Schema.Types.ObjectId,
+        ref: 'plans'
+    },
 
-//     lno: {
-//         type: String,
-//         required: true
-//     },
+    task: {
+        type: Schema.Types.ObjectId,
+        ref: 'tasks'
 
-//     code: {
-//         type: String,
-//         required: true
-//     },
+    },
 
-//     description: {
-//         type: String,
-//         required: true
-//     },
+    //fields
 
-//     status: {
-//         type: String,
-//         default: 'incomplete',
-//     },
+    comments: {
+        type: String,
+        required: false
+    },
 
-//     date: {
-//         type: Date,
-//         default: Date.now()
-//     }
+    status: {
+        type: String,
+        default: 'incomplete',
+    },
 
-
-// });
+    date: {
+        type: Date,
+        default: Date.now()
+    }
 
 
+});
 
-// module.exports = mongoose.model('jobs', JobSchema);
+
+
+module.exports = mongoose.model('jobs', JobSchema);
