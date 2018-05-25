@@ -1,0 +1,45 @@
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Create Plan</div>
+    <div class="card-body">
+        <form action="/admin/plans/create" method="post">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="InputLno">LNO</label>
+                        <input value="{{lno}}" required name="lno" class="form-control" id="InputLno" type="text" aria-describedby="nameHelp" placeholder="Enter lno">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="InputSheetNo">SheetNo</label>
+                        <input value="{{sheetno}}" required name="sheetno" class="form-control" id="InputSheetNo" type="text" aria-describedby="nameHelp"
+                            placeholder="Enter Sheet No.">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="InputInstruction">Instruction</label>
+                <input value="{{instruction}}" required name="instruction" class="form-control" id="InputInstruction" type="text" aria-describedby="nameHelp"
+                    placeholder="Enter Instruction">
+            </div>
+
+            <div class="form-group">
+                <label for="inputLocation">Location</label>
+                <select name="location" id="location" class="form-control">
+
+                    {{#each locations}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InputCode">Code</label>
+                <input value="{{code}}" required name="code" class="form-control" id="InputCode" type="text" aria-describedby="nameHelp"
+                    placeholder="Enter code">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+            <a href="/admin/plans" class="btn btn-secondary btn-sm">Cancel</a>
+        </form>
+    </div>
+</div>

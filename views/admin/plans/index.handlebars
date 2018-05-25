@@ -1,31 +1,35 @@
 <div class="row">
     <div class="col-sm-8">
-        {{#if tasks}}
-        <h2>Task List</h2>
+        {{#if plans}}
+        <h2>Plan</h2>
         <div style="margin-bottom: 15px;">
-            <a href="/admin/tasks/create" class="btn btn-success btn-sm">Create</a>
+            <a href="/admin/plans/create" class="btn btn-success btn-sm">Create</a>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>LNO</th>
+                    <th>SheetNo</th>
+                    <th>Instruction</th>
                     <th>Code</th>
-                    <th>Description</th>
-                    <th>Date</th>
+                    <th>Location</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {{#each tasks}}
+                {{#each plans}}
                 <tr>
+                    <td>{{lno}}</td>
+                    <td>{{sheetno}}</td>
+                    <td>{{instruction}}</td>
                     <td>{{code}}</td>
-                    <td>{{description}}</td>
-                    <td>{{formatDate date 'DD/MM/YYYY'}}</td>
+                    <td>{{location.name}}</td>
                     <td>
-                        <a href="/admin/tasks/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                        <a href="/admin/plans/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
                     </td>
                     <td>
-                        <form action="/admin/tasks/{{id}}?_method=DELETE" method="post">
+                        <form action="/admin/plans/{{id}}?_method=DELETE" method="post">
                             <button class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
@@ -44,9 +48,9 @@
 
         {{else}}
 
-        <h1 class="my-4">You have no task!</h1>
+        <h1 class="my-4">You have no Plan!</h1>
         <div style="margin-bottom: 15px;">
-            <a href="/admin/tasks/create" class="btn btn-success btn-sm">Create</a>
+            <a href="/admin/plans/create" class="btn btn-success btn-sm">Create</a>
         </div>
 
         {{/if}}
