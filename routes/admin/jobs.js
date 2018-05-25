@@ -4,7 +4,19 @@ const User = require('../../models/User');
 const Task = require('../../models/Task');
 const Plan = require('../../models/Plan');
 const Job = require('../../models/Job');
+const Nexmo = require('nexmo');
 
+let API_KEY = '248ebde6';
+let API_SECRET = 'b9n4iKmTgFVOV1T5';
+let YOUR_VIRTUAL_NUMBER = '64211110738';
+let noel_phone = '64223455406';
+let phil_phone = '64226195629';
+let jesse_phone = '64211110738';
+
+const nexmo = new Nexmo({
+    apiKey: API_KEY,
+    apiSecret: API_SECRET
+});
 
 router.all('/*', (req, res, next) => {
     req.app.locals.layout = 'admin';
@@ -67,6 +79,37 @@ router.post('/create', (req, res) => {
 
         newJob.save().then(savedJob => {
             req.flash('success_message', 'Job successfully added!');
+
+            //send sms
+            Job.findById({
+                    _id: savedJob.id
+                })
+                .populate('plan')
+                .populate('task')
+                .populate('user')
+                .then(job => {
+
+                    //console.log(job.plan.lno);
+
+                    let message = job.plan.lno + '|' + job.task.description +
+                        '|' + job.user.firstname + '|' + job.date + '|' + job.status;
+
+                    //console.log(message);
+                    //send sms
+                    nexmo.message.sendSms(
+                        YOUR_VIRTUAL_NUMBER, jesse_phone, message,
+                        (err, responseData) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.dir(responseData);
+                            }
+                        }
+                    );
+
+                });
+
+
             res.redirect('/admin/jobs');
         });
 
