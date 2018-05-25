@@ -5,7 +5,7 @@
         <div style="margin-bottom: 15px;">
             <a href="/admin/tasks/create" class="btn btn-success btn-sm">Create</a>
         </div>
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Code</th>
@@ -22,10 +22,10 @@
                     <td>{{description}}</td>
                     <td>{{formatDate date 'DD/MM/YYYY'}}</td>
                     <td>
-                        <a href="/admin/task/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                        <a href="/admin/tasks/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
                     </td>
                     <td>
-                        <form action="/admin/task/{{id}}?_method=DELETE" method="post">
+                        <form action="/admin/tasks/{{id}}?_method=DELETE" method="post">
                             <button class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>

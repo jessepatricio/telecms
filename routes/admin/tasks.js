@@ -76,4 +76,51 @@ router.post('/create', (req, res) => {
     }
 });
 
+router.get('/edit/:id', (req, res) => {
+    Task.findOne({
+        _id: req.params.id
+    }).then(task => {
+        res.render('admin/tasks/edit', {
+            task: task
+        });
+    });
+});
+
+router.put('/edit/:id', (req, res) => {
+    //console.log(req.params.id);
+    Task.findOne({
+        _id: req.params.id
+    }).then(task => {
+
+        task.code = req.body.code;
+        task.description = req.body.description;
+        task.save().then(updatedTask => {
+            req.flash('success_message', 'Task was successfully updated!');
+            res.redirect('/admin/tasks');
+        }).catch(error => {
+            console.log('could not save edited task! [' + error + ']');
+        });
+
+    }).catch(error => {
+        console.log('could not find id: ' + req.params.id);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+
+    //remove record 
+    Task.findOne({
+            _id: req.params.id
+        })
+        .then(task => {
+            task.remove().then(taskRemoved => {
+                req.flash('success_message', 'Task was successfully deleted!');
+                res.redirect('/admin/tasks');
+            });
+        });
+
+});
+
+
+
 module.exports = router;
