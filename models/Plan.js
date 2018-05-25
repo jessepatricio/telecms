@@ -2,18 +2,26 @@
 // //use mongoose schema
 // const Schema = mongoose.Schema;
 // //define the schema
-// const JobSchema = new Schema({
+// const PlanSchema = new Schema({
 
-//     //relationship
-
-//     user: {
+//     //relationships
+//     location: {
 //         type: Schema.Types.ObjectId,
-//         ref: 'users'
+//         ref: 'locations'
 //     },
 
 //     //fields
-
 //     lno: {
+//         type: String,
+//         required: true
+//     },
+
+//     sheetno: {
+//         type: String,
+//         required: true
+//     },
+
+//     instruction: {
 //         type: String,
 //         required: true
 //     },
@@ -23,15 +31,6 @@
 //         required: true
 //     },
 
-//     description: {
-//         type: String,
-//         required: true
-//     },
-
-//     status: {
-//         type: String,
-//         default: 'incomplete',
-//     },
 
 //     date: {
 //         type: Date,
@@ -39,8 +38,10 @@
 //     }
 
 
+// }, {
+//     usePushEach: true
 // });
 
 
 
-// module.exports = mongoose.model('jobs', JobSchema);
+// module.exports = mongoose.model('plans', PlanSchema);

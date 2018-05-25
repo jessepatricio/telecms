@@ -55,8 +55,7 @@ const admin = require('./routes/admin/index');
 const tasks = require('./routes/admin/tasks');
 const users = require('./routes/admin/users');
 const roles = require('./routes/admin/roles');
-
-
+const locations = require('./routes/admin/locations');
 
 //session
 app.use(session({
@@ -88,8 +87,7 @@ app.use('/admin', admin);
 app.use('/admin/users', users);
 app.use('/admin/tasks', tasks);
 app.use('/admin/roles', roles);
-
-
+app.use('/admin/locations', locations);
 
 const port = process.env.PORT || 8888;
 

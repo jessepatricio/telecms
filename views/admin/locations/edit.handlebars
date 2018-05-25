@@ -1,0 +1,10 @@
+<h1>Edit Location</h1>
+
+<form action="/admin/locations/edit/{{location.id}}?_method=PUT" method="POST">
+    <div class="form-group">
+        <label for="labelLocation">Name</label>
+        <input name="name" type="text" class="form-control" value="{{location.name}}">
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Update Location</button>
+    <a href="/admin/locations" class="btn btn-secondary btn-sm">Cancel</a>
+</form>
