@@ -4,8 +4,11 @@ const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const {
+    userAuthenticated
+} = require('../../helpers/authentication');
 
-router.all('/*', (req, res, next) => {
+router.all('/*', userAuthenticated, (req, res, next) => {
     req.app.locals.layout = 'admin';
     next();
 });

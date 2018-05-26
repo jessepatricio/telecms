@@ -12,6 +12,7 @@ const {
 } = require('./config/database');
 const passport = require('passport');
 
+
 mongoose.Promise = global.Promise;
 console.log('Connecting to ' + mongoDbURL);
 mongoose.connect(mongoDbURL).then((db) => {
@@ -43,6 +44,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 
 //method override
@@ -58,10 +60,9 @@ const locations = require('./routes/admin/locations');
 const plans = require('./routes/admin/plans');
 const jobs = require('./routes/admin/jobs');
 
-
 //session
 app.use(session({
-    secret: 'jesse1974',
+    secret: 'jesse@1974',
     resave: true,
     saveUninitialized: true
 }));
@@ -69,7 +70,6 @@ app.use(session({
 app.use(flash());
 
 //passport
-
 app.use(passport.initialize());
 app.use(passport.session());
 
