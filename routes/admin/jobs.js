@@ -4,6 +4,8 @@ const User = require('../../models/User');
 const Task = require('../../models/Task');
 const Plan = require('../../models/Plan');
 const Job = require('../../models/Job');
+const Location = require('../../models/Location');
+
 const Nexmo = require('nexmo');
 
 let API_KEY = '248ebde6';
@@ -18,19 +20,26 @@ const nexmo = new Nexmo({
     apiSecret: API_SECRET
 });
 
+
 router.all('/*', (req, res, next) => {
     req.app.locals.layout = 'admin';
     next();
 });
 
+
 router.get('/', (req, res) => {
     Job.find({})
-        .populate('user')
-        .populate('task')
-        .populate('plan')
+        .populate('user', 'firstname')
+        .populate('task', 'description')
+        .populate({
+            path: 'plan',
+            populate: {
+                path: 'location'
+            }
+        })
         .then(jobs => {
             res.render('admin/jobs', {
-                jobs: jobs
+                jobs: jobs,
             });
         });
 });
@@ -86,12 +95,17 @@ router.post('/create', (req, res) => {
                 Job.findById({
                         _id: savedJob.id
                     })
-                    .populate('plan')
-                    .populate('task')
-                    .populate('user')
+                    .populate('user', 'firstname')
+                    .populate('task', 'description')
+                    .populate({
+                        path: 'plan',
+                        populate: {
+                            path: 'location'
+                        }
+                    })
                     .then(job => {
 
-                        let message = job.plan.lno + '|' + job.task.description +
+                        let message = job.plan.location.name + '|' + job.plan.lno + '|' + job.task.description +
                             '|' + job.user.firstname + '|' + job.date + '|' + job.status;
 
                         nexmo.message.sendSms(
@@ -105,6 +119,7 @@ router.post('/create', (req, res) => {
                                 }
                             }
                         );
+
                     });
             } else {
                 console.log('no notification sent.');
@@ -157,9 +172,15 @@ router.put('/edit/:id', (req, res) => {
                 Job.findById({
                         _id: updatedJob.id
                     })
-                    .populate('plan')
-                    .populate('task')
-                    .populate('user')
+                    .lean()
+                    .populate('user', 'firstname')
+                    .populate('task', 'description')
+                    .populate({
+                        path: 'plan',
+                        populate: {
+                            path: 'location'
+                        }
+                    })
                     .then(job => {
 
                         let message = job.plan.lno + '|' + job.task.description +

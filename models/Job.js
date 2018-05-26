@@ -14,6 +14,7 @@ const JobSchema = new Schema({
     plan: {
         type: Schema.Types.ObjectId,
         ref: 'plans'
+
     },
 
     task: {
@@ -31,7 +32,7 @@ const JobSchema = new Schema({
 
     status: {
         type: String,
-        default: 'incomplete',
+        default: 'incomplete'
     },
 
     date: {
@@ -39,9 +40,6 @@ const JobSchema = new Schema({
         default: Date.now()
     }
 
-
 });
-
-
 
 module.exports = mongoose.model('jobs', JobSchema);
