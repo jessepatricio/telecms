@@ -59,6 +59,7 @@ const roles = require('./routes/admin/roles');
 const locations = require('./routes/admin/locations');
 const plans = require('./routes/admin/plans');
 const jobs = require('./routes/admin/jobs');
+const reports = require('./routes/admin/reports');
 
 //session
 app.use(session({
@@ -92,6 +93,7 @@ app.use('/admin/roles', roles);
 app.use('/admin/locations', locations);
 app.use('/admin/plans', plans);
 app.use('/admin/jobs', jobs);
+app.use('/admin/reports', reports);
 
 
 const port = process.env.PORT || 8888;

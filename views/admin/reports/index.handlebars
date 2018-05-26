@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="table-responsive-sm col-sm-6">
+        <h2>Job Today {{formatDate Date.now 'DD/MM/YYYY'}}</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Plan</th>
+                    <th>Tasks</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Comments</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each jobs}}
+                <tr>
+                    <td>{{plan.location.name}}</td>
+                    <td>{{plan.lno}}</td>
+                    <td>{{task.description}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{status}}</td>
+                    <td>{{comments}}</td>
+                    {{!--
+                    <td>{{formatDate date 'DD/MM/YYYY'}}</td> --}}
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
