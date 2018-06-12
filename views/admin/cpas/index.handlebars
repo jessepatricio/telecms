@@ -13,7 +13,7 @@
                             <label class="mr-sm-2" for="sellocation">Location</label>
                             <select name="location" id="location" class="form-control mr-sm-2">
                                 {{#select location}}
-                                <option value="--all--">--all--</option>
+                                <option value="">--all--</option>
                                 {{#each cpalocs}}
                                 <option value="{{this}}">{{this}}</option>
                                 {{/each}} {{/select}}
@@ -21,7 +21,7 @@
                             <label class="mr-sm-2" for="selductnumber">MDuct</label>
                             <select name="mduct1" id="mduct1" class="form-control mr-sm-2">
                                 {{#select mduct1}}
-                                <option value="--all--">--all--</option>
+                                <option value="">--all--</option>
                                 {{#each mducts}}
                                 <option value="{{this}}">{{this}}</option>
                                 {{/each}} {{/select}}
