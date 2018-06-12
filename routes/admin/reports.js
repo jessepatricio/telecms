@@ -18,14 +18,14 @@ router.all('/*', (req, res, next) => {
 });
 
 router.post("/filter", (req, res) => {
-    console.log(req.body.dateFilter);
+    //console.log(req.body.dateFilter);
     //res.render('admin/reports');
     if (req.body.dateFilter != '--all--') {
         var parts = req.body.dateFilter.split('/');
         // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
         // January - 0, February - 1, etc.
         var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
-        console.log("trans: " + mydate);
+        //console.log("trans: " + mydate);
         Job.find({
                 "date": {
                     $gte: mydate,
