@@ -10,6 +10,12 @@ const UserSchema = new Schema({
         ref: 'roles'
     },
 
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+
     firstname: {
         type: String,
         required: true

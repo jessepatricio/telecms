@@ -29,12 +29,12 @@ router.get('/login', (req, res) => {
 
 //app login
 passport.use(new LocalStrategy({
-    usernameField: 'email'
-}, (email, password, done) => {
+    //usernameField: 'email'
+}, (username, password, done) => {
 
     //console.log(email);
     User.findOne({
-        email: email
+        username: username
     }).then(user => {
 
         if (!user) return done(null, false, {
@@ -70,6 +70,7 @@ passport.deserializeUser((id, done) => {
 
 router.post('/login', (req, res, next) => {
 
+    //res.redirect('/admin');
     passport.authenticate('local', {
 
         successRedirect: '/admin',

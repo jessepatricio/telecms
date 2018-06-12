@@ -1,0 +1,94 @@
+<div class="card card-register mx-auto mt-5">
+    <div class="card-header">Edit CPA</div>
+    <div class="card-body">
+        <form action="/admin/cpas/edit/{{cpa.id}}?_method=PUT" method="post">
+            <div class="form-group">
+                <label for="InputInstruction">Location</label>
+                <input value="{{cpa.location}}" required name="location" class="form-control" id="location" type="text" aria-describedby="locationHelp"
+                    placeholder="Enter Location">
+            </div>
+            <div class="form-group">
+                <label for="InputAbffip">ABFFP ID</label>
+                <input value="{{cpa.abffpid}}" required name="abffpid" class="form-control" id="abffpid" type="text" aria-describedby="abffpidHelp"
+                    placeholder="Enter ABFFP ID">
+            </div>
+            <div class="form-group">
+                <label for="InputMDuct1">MDuct Tube</label>
+                <input value="{{cpa.mduct1}}" required name="mduct1" class="form-control" id="mduct1" type="text" aria-describedby="mduct1Help"
+                    placeholder="Enter MDuct Tube">
+            </div>
+            <div class="form-group">
+                <label for="InputMDuct2">MDuct Group</label>
+                <input value="{{cpa.mduct2}}" name="mduct2" class="form-control" id="mduct2" type="text" aria-describedby="mduct2Help" placeholder="Enter MDuct Group">
+            </div>
+            <div class="form-group">
+                <label for="Input26way">26 Way Tube</label>
+                <input value="{{cpa.way26tube}}" name="way26tube" class="form-control" id="way26tube" type="text" aria-describedby="way26tubeHelp"
+                    placeholder="Enter 26 way tube.">
+            </div>
+            <div class="form-group">
+                <label for="Input10way">10+1 Way Tube</label>
+                <input value="{{cpa.way10tube}}" name="way10tube" class="form-control" id="way10tube" type="text" aria-describedby="way10tubeHelp"
+                    placeholder="Enter 10+1 way tube.">
+            </div>
+            <div class="form-group">
+                <label for="Input12way">12 Way Tube</label>
+                <input value="{{cpa.way12tube}}" name="way12tube" class="form-control" id="way12tube" type="text" aria-describedby="way12tubeHelp"
+                    placeholder="Enter 12 way tube.">
+            </div>
+            <div class="form-group">
+                <label for="Input7way">7 Way Tube</label>
+                <input value="{{cpa.way7tube}}" name="way7tube" class="form-control" id="way7tube" type="text" aria-describedby="way7tubeHelp"
+                    placeholder="Enter 7 way tube.">
+            </div>
+            <div class="form-group">
+                <label for="Input4way">4 Way Tube</label>
+                <input value="{{cpa.way4tube}}" name="way4tube" class="form-control" id="way4tube" type="text" aria-describedby="way4tubeHelp"
+                    placeholder="Enter 4 way tube.">
+            </div>
+
+            <div class="form-group">
+                <label for="InputstreetNumber">Street Number</label>
+                <input value="{{cpa.streetnumber}}" name="streetnumber" class="form-control" id="streetnumber" type="text" aria-describedby="streetnumberHelp"
+                    placeholder="Enter street number.">
+            </div>
+
+            <div class="form-group">
+                <label for="InputstreetName">Street Name</label>
+                <input value="{{cpa.streetname}}" name="streetname" class="form-control" id="streetname" type="text" aria-describedby="streetnameHelp"
+                    placeholder="Enter street name.">
+            </div>
+
+            <div class="form-group">
+                <label for="inputStatus">Status</label>
+                <select name="status" id="status" class="form-control">
+
+                    {{#select cpa.status}}
+                    <option value="Not tested">Not Tested</option>
+                    <option value="Ok">Ok</option>
+                    <option value="Faulty">Faulty</option>
+                    {{/select}}
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InputRemakrs">Remarks</label>
+                <input value="{{cpa.remarks}}" name="remarks" class="form-control" id="remarks" type="text" aria-describedby="remarksHelp"
+                    placeholder="Enter Remarks">
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="/admin/cpas" class="btn btn-secondary btn-block">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

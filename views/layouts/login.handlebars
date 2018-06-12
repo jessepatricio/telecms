@@ -8,7 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>JD3 DAR</title>
+  <title>
+    JD3 DAR
+  </title>
 
   <!-- Bootstrap core CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -18,12 +20,12 @@
 
 </head>
 
-<body>
+<body class="bg">
 
   <!-- Navigation -->
   {{> login/login-header}}
   <!-- Page Content -->
-  <div class="container">
+  <div class="container semi_transparent">
     {{#if errors}}
     <br> {{#each errors}}
     <div class="alert-danger">{{message}}</div>
@@ -33,7 +35,7 @@
 
   <!-- Footer -->
 
-  {{> common/footer}}
+  {{> common/loginfooter}}
 
   <!-- Bootstrap core JavaScript -->
   <script src="/js/jquery/jquery.min.js"></script>

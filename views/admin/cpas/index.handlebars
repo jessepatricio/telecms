@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col-sm-12">
+        {{#if cpas}}
+        <h2>Cable Plant Alteration - ABFFP Architecture</h2>
+        <div style="margin-bottom: 15px;">
+            <div class="form-group">
+                <div class="row align-content-center">
+                    <div class="col-sm-2">
+                        <a href="/admin/cpas/create" class="btn btn-success btn-sm">Create</a>
+                    </div>
+                    <div class="col-sm-8">
+                        <form action="/admin/cpas/search_cpa" class="form-inline" method="POST">
+                            <label class="mr-sm-2" for="sellocation">Location</label>
+                            <select name="location" id="location" class="form-control mr-sm-2">
+                                {{#select location}}
+                                <option value="--all--">--all--</option>
+                                {{#each cpalocs}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}} {{/select}}
+                            </select>
+                            <label class="mr-sm-2" for="selductnumber">MDuct</label>
+                            <select name="mduct1" id="mduct1" class="form-control mr-sm-2">
+                                {{#select mduct1}}
+                                <option value="--all--">--all--</option>
+                                {{#each mducts}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}} {{/select}}
+                            </select>
+                            <input type='submit' value='Apply Filter' class="btn btn-info btn-sm mr-sm-2">
+                            <a href="/admin/cpas" class="btn btn-warning btn-sm mr-sm-2">Reset</a>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>ABFFP ID</th>
+                    <th>MDuct Tube</th>
+                    <th>MDuct Group</th>
+                    <th>26-Way</th>
+                    {{!--
+                    <th>10-Way</th> --}}
+                    <th>12-Way</th>
+                    {{!--
+                    <th>7-Way</th>
+                    <th>4-Way</th> --}}
+                    <th>Street Number</th>
+                    <th>Street Name</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each cpas}}
+                <tr>
+                    <td nowrap>{{location}}</td>
+                    <td nowrap>{{abffpid}}</td>
+                    <td>{{mduct1}}</td>
+                    <td nowrap>{{mduct2}}</td>
+                    <td>{{way26tube}}</td>
+                    {{!--
+                    <td>{{way10tube}}</td> --}}
+                    <td nowrap>{{way12tube}}</td>
+                    {{!--
+                    <td>{{way7tube}}</td>
+                    <td>{{way4tube}}</td> --}}
+                    <td>{{streetnumber}}</td>
+                    <td>{{streetname}}</td>
+                    <td>{{status}}</td>
+                    <td>{{remarks}}</td>
+                    <td>
+                        <a href="/admin/cpas/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                    </td>
+                    <td>
+                        <form action="/admin/cpas/{{id}}?_method=DELETE" method="post">
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+
+            {{#paginate current=current pages=pages}}{{/paginate}}
+
+        </ul>
+
+        {{else}}
+
+        <h1 class="my-4">CPA not found!</h1>
+        <div class="form-inline">
+            <div style="margin-bottom: 15px;">
+                <a href="/admin/cpas/create" class="btn btn-success btn-sm m-2">Create</a>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <a href="/admin/cpas" class="btn btn-secondary btn-sm">Back</a>
+            </div>
+        </div>
+
+        {{/if}}
+
+    </div>
+</div>

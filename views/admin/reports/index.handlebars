@@ -1,33 +1,59 @@
 <div class="row">
-    <div class="table-responsive-sm col-sm-6">
-        <h2>Job Today {{formatDate Date.now 'DD/MM/YYYY'}}</h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Location</th>
-                    <th>Plan</th>
-                    <th>Tasks</th>
-                    <th>Assigned To</th>
-                    <th>Status</th>
-                    <th>Comments</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each jobs}}
-                <tr>
-                    <td>{{plan.location.name}}</td>
-                    <td>{{plan.lno}}</td>
-                    <td>{{task.description}}</td>
-                    <td>{{user.firstname}}</td>
-                    <td>{{status}}</td>
-                    <td>{{comments}}</td>
-                    {{!--
-                    <td>{{formatDate date 'DD/MM/YYYY'}}</td> --}}
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+    <div class="table-responsive-sm col-sm-12">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-4">
+                    <h3>Jobs Today</h3>
+                </div>
+                {{!--
+                <div class="col-8 text-right">
+                    <form action="/admin/reports/filter" class="form-inline" method="POST">
+                        <label class="mr-sm-2" for="selDate">Date</label>
+                        <select name="dateFilter" id="dateFilter" class="form-control mr-sm-2">
+                            {{#select mydate}}
+                            <option value="--all--">--all--</option>
+                            {{#each jobdates}}
+                            <option value="{{formatDate date 'DD/MM/YYYY'}}">{{formatDate date 'DD/MM/YY'}}</option>
+                            {{/each}} {{/select}}
+                        </select>
+                        <input type='submit' value='Filter' class="btn btn-info btn-sm mr-sm-2">
+                    </form>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive-sm col-sm-12  pr-5 pl-5">
+        <div class="form-group">
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Plan</th>
+                            <th>Tasks</th>
+                            <th>Resource</th>
+                            <th>Status</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each jobs}}
+                        <tr>
+                            <td>{{plan.location.name}}</td>
+                            <td>{{plan.lno}}</td>
+                            <td>{{task.description}}</td>
+                            <td>{{user.firstname}}</td>
+                            <td>{{status}}</td>
+                            <td>{{comments}}</td>
+                            {{!--
+                            <td>{{formatDate date 'DD/MM/YYYY'}}</td> --}}
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

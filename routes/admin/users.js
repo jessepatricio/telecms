@@ -33,6 +33,13 @@ router.post('/create', (req, res) => {
 
     let errors = [];
 
+    if (!req.body.username) {
+        errors.push({
+            message: 'please enter your username'
+        });
+    }
+
+
     if (!req.body.firstname) {
         errors.push({
             message: 'please enter your firstname'
@@ -73,6 +80,7 @@ router.post('/create', (req, res) => {
 
         res.render('admin/users/create', {
             errors: errors,
+            username: req.body.username,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
@@ -83,15 +91,16 @@ router.post('/create', (req, res) => {
     } else {
 
         User.findOne({
-            email: req.body.email
+            username: req.body.username
         }).then(user => {
 
             if (user) {
-                req.flash('info_message', 'That email is already added.');
+                req.flash('info_message', 'That username is already added.');
                 res.redirect('/admin/users');
             } else {
                 //res.send('data was good');
                 const newUser = new User({
+                    username: req.body.username,
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
                     email: req.body.email,
@@ -135,7 +144,7 @@ router.put('/edit/:id', (req, res) => {
     User.findOne({
         _id: req.params.id
     }).then(user => {
-
+        user.username = req.body.username;
         user.firstname = req.body.firstname;
         user.lastname = req.body.lastname;
         user.email = req.body.email;

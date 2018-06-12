@@ -2,9 +2,47 @@ body {
     padding-top: 70px;
 }
 
-@media (min-width: 992px)
-{
+.bg {
+    /* img background */
+    background-image: url("../uploads/jd3bg.jpg");
+    background-size: cover;
+}
+
+.semi_transparent {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.8;
+}
+
+@media (min-width: 518px) and (max-width: 1024px) {
     body {
         padding-top: 75px;
     }
+    .bg {
+        /* img background */
+        background-image: url("../uploads/jd3bg.jpg");
+        background-size: cover;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 518px) {
+    .bg {
+        /* img background */
+        background-image: url("../uploads/jd3bg.jpg");
+        background-size: 20% auto;
+    }
+    .semi_transparent {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+        filter: alpha(opacity=50);
+        opacity: .8;
+    }
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Height of the footer */
+    background: transparent;
 }

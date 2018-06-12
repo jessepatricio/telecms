@@ -5,6 +5,11 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
+                        <label for="usernameLabel">Username</label>
+                        <input value="{{user.username}}" required name="username" class="form-control" id="username" type="text" aria-describedby="usernameHelp"
+                            placeholder="Enter username">
+                    </div>
+                    <div class="col-md-6">
                         <label for="InputName">First name</label>
                         <input value="{{user.firstname}}" required name="firstname" class="form-control" id="InputName" type="text" aria-describedby="nameHelp"
                             placeholder="Enter first name">

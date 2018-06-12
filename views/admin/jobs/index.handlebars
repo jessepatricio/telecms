@@ -1,8 +1,24 @@
 <div class="row">
     <div class="table-responsive-sm col-sm-8">
         <h2>Job List</h2>
-        <div style="margin-bottom: 15px;">
-            <a href="/admin/jobs/create" class="btn btn-success btn-sm">Create</a>
+        <div class="form-inline">
+            <div class="mr-2S">
+                <a href="/admin/jobs/create" class="btn btn-success btn-sm">Create</a>
+            </div>
+            {{!--
+            <div class="col-8 text-right">
+                <form action="/admin/reports/filter" class="form-inline" method="POST">
+                    <label class="mr-sm-2" for="selDate">Date</label>
+                    <select name="dateFilter" id="dateFilter" class="form-control mr-sm-2">
+                        {{#select mydate}}
+                        <option value="--all--">--all--</option>
+                        {{#each jobdates}}
+                        <option value="{{formatDate date 'DD/MM/YYYY'}}">{{formatDate date 'DD/MM/YY'}}</option>
+                        {{/each}} {{/select}}
+                    </select>
+                    <input type='submit' value='Filter' class="btn btn-info btn-sm mr-sm-2">
+                </form>
+            </div> --}}
         </div>
         <table class="table table-hover">
             <thead>
@@ -27,7 +43,7 @@
                     <td>{{user.firstname}}</td>
                     <td>{{status}}</td>
                     <td>{{comments}}</td>
-                    <td>{{formatDate date 'DD/MM/YYYY'}}</td>
+                    <td>{{formatDate date 'DD/MM/YYYY h:mm a' }}</td>
                     <td>
                         <a href="/admin/jobs/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
                     </td>

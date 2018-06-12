@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //use helpers function
 const {
+
     select,
     formatDate,
     paginate
@@ -33,6 +34,7 @@ const {
 app.engine('handlebars', exphbs({
     defaultLayout: 'admin',
     helpers: {
+
         select: select,
         formatDate: formatDate,
         paginate: paginate
@@ -59,6 +61,7 @@ const roles = require('./routes/admin/roles');
 const locations = require('./routes/admin/locations');
 const plans = require('./routes/admin/plans');
 const jobs = require('./routes/admin/jobs');
+const cpas = require('./routes/admin/cpas');
 const reports = require('./routes/admin/reports');
 
 //session
@@ -93,6 +96,7 @@ app.use('/admin/roles', roles);
 app.use('/admin/locations', locations);
 app.use('/admin/plans', plans);
 app.use('/admin/jobs', jobs);
+app.use('/admin/cpas', cpas);
 app.use('/admin/reports', reports);
 
 

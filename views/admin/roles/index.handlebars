@@ -4,11 +4,10 @@
         <div style="margin-bottom: 15px;">
             <a href="/admin/roles/create" class="btn btn-success btn-sm">Create</a>
         </div>
-        <table class="table table-hover">
+        <table class="table table-hover" style="width:40px;">
             <thead>
                 <tr>
                     <th>Role</th>
-                    <th>Date</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -17,7 +16,6 @@
                 {{#each roles}}
                 <tr>
                     <td>{{rolename}}</td>
-                    <td>{{formatDate date 'DD/MM/YYYY'}}</td>
                     <td>
                         <a href="/admin/roles/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
                     </td>
