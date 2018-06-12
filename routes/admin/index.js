@@ -9,7 +9,7 @@ const {
     userAuthenticated
 } = require('../../helpers/authentication');
 //userAuthenticated
-router.all('/*', (req, res, next) => {
+router.all('/*', userAuthenticated, (req, res, next) => {
     req.app.locals.layout = 'admin';
     next();
 });
