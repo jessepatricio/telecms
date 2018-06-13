@@ -141,7 +141,6 @@ router.get('/', (req, res) => {
                                 }
                             }
                         }
-
                     }])
                 .then(jobdates => {
                     res.render('admin/reports', {
@@ -149,6 +148,9 @@ router.get('/', (req, res) => {
                         jobdates: jobdates
                     });
                 });
+        }).catch(error => {
+            req.flash('error_message', 'error displaying jobs!');
+            res.redirect('admin/cpas/index');
         });
 
 });
