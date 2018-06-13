@@ -12,7 +12,7 @@ router.all('/*', (req, res, next) => {
 
 router.get('/', (req, res) => {
 
-    //console.log('congratualations on your new node.js app');
+    //console.log('congratulations on your new node.js app');
 
     res.render('login/index');
 

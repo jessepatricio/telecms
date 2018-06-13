@@ -11,6 +11,16 @@ const JobSchema = new Schema({
         ref: 'users'
     },
 
+    addedby: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
+
+    modifiedby: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
+
     plan: {
         type: Schema.Types.ObjectId,
         ref: 'plans'
@@ -33,6 +43,16 @@ const JobSchema = new Schema({
     status: {
         type: String,
         default: 'incomplete'
+    },
+
+    jobdate: {
+        type: String,
+        required: true
+    },
+
+    timestamp: {
+        type: Date,
+        default: Date.now()
     },
 
     date: {

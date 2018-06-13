@@ -5,6 +5,9 @@ const Task = require('../../models/Task');
 const Plan = require('../../models/Plan');
 const Job = require('../../models/Job');
 const Location = require('../../models/Location');
+const {
+    formatDate
+} = require('../../helpers/admin-helpers');
 
 const Nexmo = require('nexmo');
 
@@ -30,6 +33,8 @@ router.all('/*', (req, res, next) => {
 router.get('/', (req, res) => {
     Job.find({})
         .populate('user', 'firstname')
+        .populate('addedby', 'firstname')
+        .populate('modifiedby', 'firstname')
         .populate('task', 'description')
         .populate({
             path: 'plan',
@@ -83,7 +88,11 @@ router.post('/create', (req, res) => {
             task: req.body.task,
             user: req.body.user,
             comments: req.body.comments,
-            status: req.body.status
+            status: req.body.status,
+            jobdate: formatDate(Date.now(), "DD/MM/YYYY"),
+            addedby: req.user,
+            modifiedby: req.user
+
         });
 
         newJob.save().then(savedJob => {
@@ -164,6 +173,9 @@ router.put('/edit/:id', (req, res) => {
         job.user = req.body.user;
         job.comments = req.body.comments;
         job.status = req.body.status;
+        job.jobdate = formatDate(Date.now(), "DD/MM/YYYY");
+        job.date = Date.now();
+        job.modifiedby = req.user;
         job.save().then(updatedJob => {
             req.flash('success_message', 'Job was successfully updated!');
 

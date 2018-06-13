@@ -126,31 +126,13 @@ router.get('/', (req, res) => {
             }
         })
         .then(jobs => {
-            Job.aggregate(
-                    [{
-                        $group: {
-                            _id: {
-                                year: {
-                                    $year: "$requests.rstTimeStamp"
-                                },
-                                month: {
-                                    $month: "$requests.rstTimeStamp"
-                                },
-                                day: {
-                                    $dayOfMonth: "$requests.rstTimeStamp"
-                                }
-                            }
-                        }
-                    }])
-                .then(jobdates => {
-                    res.render('admin/reports', {
-                        jobs: jobs,
-                        jobdates: jobdates
-                    });
-                });
+            res.render('admin/reports', {
+                jobs: jobs
+            });
+
         }).catch(error => {
             req.flash('error_message', 'error displaying jobs!');
-            res.redirect('admin/cpas/index');
+            res.redirect('admin/reports');
         });
 
 });

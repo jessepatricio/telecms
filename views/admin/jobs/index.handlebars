@@ -49,7 +49,7 @@
                     <tbody>
                         {{#each jobs}}
                         <tr>
-                            <td>{{plan.location.name}}</td>
+                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Record Information" data-content="Created by {{addedby.firstname}} on {{formatDate timestamp 'DD/MM/YYYY h:mm a' }}. Updated by {{modifiedby.firstname}} on {{formatDate date 'DD/MM/YYYY h:mm a' }}">{{plan.location.name}}</td>
                             <td>{{plan.lno}}</td>
                             <td>{{task.description}}</td>
                             <td>{{user.firstname}}</td>

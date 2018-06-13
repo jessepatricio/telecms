@@ -204,8 +204,8 @@ router.post('/search_cpa', (req, res) => {
         })
     }).catch(error => {
         req.flash('error_message', 'record not found!');
-        res.redirect('admin/cpas/index');
-    });;
+        res.redirect('admin/cpas');
+    });
 });
 
 
