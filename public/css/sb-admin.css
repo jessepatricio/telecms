@@ -446,11 +446,6 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   .card-columns {
     column-count: 1;
   }
-  .bg {
-    /* img background */
-    background-image: none;
-    background-size: cover;
-  }
 }
 
 @media (min-width: 768px) {
@@ -492,5 +487,17 @@ footer.sticky-footer {
 @media (min-width: 992px) {
   body.sidenav-toggled footer.sticky-footer {
     width: calc(100% - 55px);
+  }
+}
+
+@media (min-width: 992px) {
+  footer.sticky-footer {
+    width: calc(100% - 250px);
+  }
+}
+
+@media (max-width: 578px) {
+  h2 {
+    font-size: 1em;
   }
 }
