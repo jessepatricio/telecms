@@ -174,8 +174,8 @@ router.post('/search_cpa', (req, res) => {
         mduct1: req.body.mduct1
     }).then(cpas => {
         Cpa.count({
-            location: req.body.location,
-            mduct1: req.body.mduct1
+            location: req.body.location
+
         }).then(cpaCount => {
             // console.log(cpaCount);
             Cpa.find({}).distinct('location', (err, cpalocs) => {
@@ -183,22 +183,22 @@ router.post('/search_cpa', (req, res) => {
                     req.flash('error_message', 'Filter unsuccessful!');
                     res.redirect('/admin/cpas');
                 } else {
-                    Cpa.find({}).distinct('mduct1', (err, mducts) => {
-                        if (err) {
-                            req.flash('error_message', 'Filter unsuccessful!');
-                            res.redirect('/admin/cpas/index');
-                        } else {
-                            res.render('admin/cpas', {
-                                location: req.body.location,
-                                mduct1: req.body.mduct1,
-                                cpalocs: cpalocs,
-                                mducts: mducts,
-                                cpas: cpas,
-                                current: parseInt(page),
-                                pages: Math.ceil(cpaCount / perPage)
-                            });
-                        }
-                    });
+                    //Cpa.find({}).distinct('mduct1', (err, mducts) => {
+                    if (err) {
+                        req.flash('error_message', 'Filter unsuccessful!');
+                        res.redirect('/admin/cpas/index');
+                    } else {
+                        res.render('admin/cpas', {
+                            location: req.body.location,
+                            mduct1: req.body.mduct1,
+                            cpalocs: cpalocs,
+                            //  mducts: mducts,
+                            cpas: cpas,
+                            current: parseInt(page),
+                            pages: Math.ceil(cpaCount / perPage)
+                        });
+                    }
+                    // });
                 }
             });
         })
