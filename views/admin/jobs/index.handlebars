@@ -1,59 +1,75 @@
 <div class="row">
-    <h2>Job List</h2>
-    <div class="form-inline ">
-        <div class="mr-2S">
-            <a href="/admin/jobs/create" class="btn btn-success btn-sm">Create</a>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm">
+                <h2>Job List</h2>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <a href="/admin/jobs/create" class="btn btn-success btn-sm">Create</a>
+                </div>
+                <div class="form-group">
+
+                    {{!--
+                    <div class="col-8 text-right">
+                        <form action="/admin/reports/filter" class="form-inline" method="POST">
+                            <label class="mr-sm-2" for="selDate">Date</label>
+                            <select name="dateFilter" id="dateFilter" class="form-control mr-sm-2">
+                                {{#select mydate}}
+                                <option value="--all--">--all--</option>
+                                {{#each jobdates}}
+                                <option value="{{formatDate date 'DD/MM/YYYY'}}">{{formatDate date 'DD/MM/YY'}}</option>
+                                {{/each}} {{/select}}
+                            </select>
+                            <input type='submit' value='Filter' class="btn btn-info btn-sm mr-sm-2">
+                        </form>
+                    </div> --}}
+                </div>
+            </div>
         </div>
-        {{!--
-        <div class="col-8 text-right">
-            <form action="/admin/reports/filter" class="form-inline" method="POST">
-                <label class="mr-sm-2" for="selDate">Date</label>
-                <select name="dateFilter" id="dateFilter" class="form-control mr-sm-2">
-                    {{#select mydate}}
-                    <option value="--all--">--all--</option>
-                    {{#each jobdates}}
-                    <option value="{{formatDate date 'DD/MM/YYYY'}}">{{formatDate date 'DD/MM/YY'}}</option>
-                    {{/each}} {{/select}}
-                </select>
-                <input type='submit' value='Filter' class="btn btn-info btn-sm mr-sm-2">
-            </form>
-        </div> --}}
+
+
+        <div class="row">
+            <div class="col-sm">
+                <table class="table-sm table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Plan</th>
+                            <th>Tasks</th>
+                            <th>Assigned To</th>
+                            <th>Status</th>
+                            <th>Comments</th>
+                            <th>Date</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each jobs}}
+                        <tr>
+                            <td>{{plan.location.name}}</td>
+                            <td>{{plan.lno}}</td>
+                            <td>{{task.description}}</td>
+                            <td>{{user.firstname}}</td>
+                            <td>{{status}}</td>
+                            <td>{{comments}}</td>
+                            <td>{{formatDate date 'DD/MM/YYYY h:mm a' }}</td>
+                            <td>
+                                <a href="/admin/jobs/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                            </td>
+                            <td>
+                                <form action="/admin/jobs/{{id}}?_method=DELETE" method="post">
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Location</th>
-                <th>Plan</th>
-                <th>Tasks</th>
-                <th>Assigned To</th>
-                <th>Status</th>
-                <th>Comments</th>
-                <th>Date</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each jobs}}
-            <tr>
-                <td>{{plan.location.name}}</td>
-                <td>{{plan.lno}}</td>
-                <td>{{task.description}}</td>
-                <td>{{user.firstname}}</td>
-                <td>{{status}}</td>
-                <td>{{comments}}</td>
-                <td>{{formatDate date 'DD/MM/YYYY h:mm a' }}</td>
-                <td>
-                    <a href="/admin/jobs/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
-                </td>
-                <td>
-                    <form action="/admin/jobs/{{id}}?_method=DELETE" method="post">
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
 </div>
 </div>
