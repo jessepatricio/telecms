@@ -12,36 +12,23 @@ router.get('/', (req, res) => {
     const perPage = 10;
     const page = req.query.page || 1;
 
-    // MyModel.find().distinct('_id', function(error, ids) {
-    //     // ids is an array of all ObjectIds
-    // });
-
     Cpa.find({})
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .then(cpas => {
             Cpa.count().then(cpaCount => {
-                Cpa.find({}).distinct('location', (err, cpalocs) => {
+                Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
                     //console.log(cpalocs);
                     if (err) {
-                        req.flash('error_message', 'Error displaying location filter!');
+                        req.flash('error_message', 'Error displaying abffpid filter!');
                         res.redirect('/admin/cpas');
                     } else {
-                        Cpa.find({}).distinct('mduct1', (err, mducts) => {
-                            if (err) {
-                                req.flash('error_message', 'Error displaying mduct filter!');
-                                res.redirect('/admin/cpas');
-                            } else {
-                                res.render('admin/cpas', {
-                                    cpas: cpas,
-                                    mduct1: req.body.mduct1,
-                                    mducts: mducts,
-                                    location: req.body.location,
-                                    cpalocs: cpalocs,
-                                    current: parseInt(page),
-                                    pages: Math.ceil(cpaCount / perPage)
-                                });
-                            }
+                        res.render('admin/cpas', {
+                            cpas: cpas,
+                            abffpid: req.body.abffpid,
+                            cpalocs: cpalocs,
+                            current: parseInt(page),
+                            pages: Math.ceil(cpaCount / perPage)
                         });
                     }
                 });
@@ -170,38 +157,61 @@ router.post('/search_cpa', (req, res) => {
     const page = req.query.page || 1;
 
     Cpa.find({
-        location: req.body.location,
-        mduct1: req.body.mduct1
+        abffpid: req.body.abffpid
     }).then(cpas => {
         Cpa.count({
-            location: req.body.location
-
+            abffpid: req.body.abffpid
         }).then(cpaCount => {
             // console.log(cpaCount);
-            Cpa.find({}).distinct('location', (err, cpalocs) => {
+            Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
                 if (err) {
                     req.flash('error_message', 'Filter unsuccessful!');
                     res.redirect('/admin/cpas');
                 } else {
-                    //Cpa.find({}).distinct('mduct1', (err, mducts) => {
-                    if (err) {
-                        req.flash('error_message', 'Filter unsuccessful!');
-                        res.redirect('/admin/cpas/index');
-                    } else {
-                        res.render('admin/cpas', {
-                            location: req.body.location,
-                            mduct1: req.body.mduct1,
-                            cpalocs: cpalocs,
-                            //  mducts: mducts,
-                            cpas: cpas,
-                            current: parseInt(page),
-                            pages: Math.ceil(cpaCount / perPage)
-                        });
-                    }
-                    // });
+                    res.render('admin/cpas', {
+                        abffpid: req.body.abffpid,
+                        cpalocs: cpalocs,
+                        cpas: cpas,
+                        current: parseInt(page),
+                        pages: Math.ceil(cpaCount / perPage)
+                    });
                 }
             });
         })
+    }).catch(error => {
+        req.flash('error_message', 'record not found!');
+        res.redirect('admin/cpas');
+    });
+});
+
+router.get('/search_cpa', (req, res) => {
+    const perPage = 10;
+    const page = req.query.page || 1;
+    console.log('test' + req.body.abffpid);
+    Cpa.find({
+        abffpid: req.body.abffpid
+    }).then(cpas => {
+        Cpa.count({
+            abffpid: req.body.abffpid
+        }).then(cpaCount => {
+            // console.log(cpaCount);
+            Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
+                if (err) {
+                    console.log(err);
+                    req.flash('error_message', 'Filter unsuccessful!');
+                    res.redirect('/admin/cpas');
+                } else {
+                    res.render('admin/cpas', {
+                        abffpid: req.body.abffpid,
+                        cpalocs: cpalocs,
+                        cpas: cpas,
+                        current: parseInt(page),
+                        pages: Math.ceil(cpaCount / perPage)
+                    });
+                }
+            });
+        });
+
     }).catch(error => {
         req.flash('error_message', 'record not found!');
         res.redirect('admin/cpas');
