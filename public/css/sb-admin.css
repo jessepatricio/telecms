@@ -500,4 +500,7 @@ footer.sticky-footer {
   h2 {
     font-size: 1em;
   }
+  /* .form-group {
+    align-content: bottom;
+  } */
 }
