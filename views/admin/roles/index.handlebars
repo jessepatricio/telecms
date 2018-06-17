@@ -4,7 +4,7 @@
         <div style="margin-bottom: 15px;">
             <a href="/admin/roles/create" class="btn btn-success btn-sm">Create</a>
         </div>
-        <table class="table table-responsive table-hover" style="width:40px;">
+        <table class="table table-responsive table-hover">
             <thead>
                 <tr>
                     <th>Role</th>
@@ -17,11 +17,11 @@
                 <tr>
                     <td>{{rolename}}</td>
                     <td>
-                        <a href="/admin/roles/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                        <a href=" /admin/roles/edit/{{id}} " class="btn btn-info btn-sm ">Edit</a>
                     </td>
                     <td>
-                        <form action="/admin/roles/{{id}}?_method=DELETE" method="post">
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                        <form action="/admin/roles/{{id}}?_method=DELETE " method="post ">
+                            <button class="btn btn-danger btn-sm ">Delete</button>
                         </form>
                     </td>
                 </tr>
