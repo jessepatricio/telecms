@@ -11,7 +11,7 @@
                 <a href="/admin/cpas/create" class="btn btn-success btn-sm">Create</a>
             </div>
             <div class="col-sm m-2">
-                <form class="form-inline" action="/admin/cpas/search_cpa" method="POST">
+                <form class="form-inline align-bottom" action="/admin/cpas/search_cpa" method="POST">
                     <div class="form-group m-1">
                         <label for="abffpid" class="m-1">ABFF-ID</label>
                         <select name="abffpid" id="abffpid" class="form-control">
@@ -22,17 +22,6 @@
                             {{/each}} {{/select}}
                         </select>
                     </div>
-                    {{!--
-                    <div class="form-group m-2">
-                        <label for="mduct1" class="m-1">Duct#</label>
-                        <select name="mduct1" id="mduct1" class="form-control">
-                            {{#select mduct1}}
-                            <option value="">--all--</option>
-                            {{#each mducts}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}} {{/select}}
-                        </select>
-                    </div> --}}
                     <div class="form-group">
                         <div class="m-1">
                             <input type='submit' value='Apply Filter' class="btn btn-info btn-sm btn-block">
