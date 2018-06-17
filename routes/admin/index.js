@@ -70,6 +70,62 @@ router.get('/', (req, res) => {
 
 });
 
+router.post('/', (req, res) => {
+
+
+    Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
+
+        let abffpid = (!req.body.abffpid) ? cpalocs[0] : req.body.abffpid;
+
+        const promises = [
+
+            Job.find({
+                'status': 'completed'
+            }).count().exec(),
+            Job.find({
+                'status': 'incomplete'
+            }).count().exec(),
+            Cpa.find({
+                'abffpid': abffpid,
+                'status': 'Not tested'
+            }).count().exec(),
+            Cpa.find({
+                'abffpid': abffpid,
+                'status': 'Ok'
+            }).count().exec(),
+            Cpa.find({
+                'abffpid': abffpid,
+                'status': 'Faulty'
+            }).count().exec()
+
+
+        ];
+
+        Promise.all(promises).then(([completeCount, incompleteCount, pending, oks, faults]) => {
+
+            Cpa.find({
+                abffpid: req.body.abffpid
+            }).then(recs => {
+                res.render('admin/coming', {
+                    abffpid: req.body.abffpid,
+                    cpalocs: cpalocs,
+                    completeCount: completeCount,
+                    incompleteCount: incompleteCount,
+                    pending,
+                    oks,
+                    faults
+                });
+
+            });
+        });
+    });
+
+
+
+});
+
+
+
 
 
 
