@@ -50,18 +50,18 @@
                         {{#each jobs}}
                         <tr>
                             <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Record Information" data-content="Created by {{addedby.firstname}} on {{formatDate timestamp 'DD/MM/YYYY h:mm a' }}. Updated by {{modifiedby.firstname}} on {{formatDate date 'DD/MM/YYYY h:mm a' }}">{{plan.location.name}}</td>
-                            <td>{{plan.lno}}</td>
+                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Plan Information" data-content="Addresses: {{plan.instruction}}">{{plan.lno}}</td>
                             <td>{{task.description}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{status}}</td>
                             <td>{{comments}}</td>
                             <td>{{formatDate date 'DD/MM/YYYY h:mm a' }}</td>
                             <td>
-                                <a href="/admin/jobs/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                                <a href="/admin/jobs/edit/{{id}} " class="btn btn-info btn-sm ">Edit</a>
                             </td>
                             <td>
-                                <form action="/admin/jobs/{{id}}?_method=DELETE" method="post">
-                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                <form action="/admin/jobs/{{id}}?_method=DELETE " method="post ">
+                                    <button class="btn btn-danger btn-sm ">Delete</button>
                                 </form>
                             </td>
                         </tr>
