@@ -44,7 +44,7 @@
                         {{#each jobs}}
                         <tr>
                             <td>{{plan.location.name}}</td>
-                            <td>{{plan.lno}}</td>
+                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Plan Information" data-content="Addresses: {{plan.instruction}}">{{plan.lno}}</td>
                             <td>{{task.description}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{status}}</td>
