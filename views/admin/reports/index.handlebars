@@ -5,22 +5,20 @@
                 <div class="col-4">
                     <h2>Jobs Today</h2>
                 </div>
-
-                {{!--
                 <div class="col-8 text-right">
 
                     <form action="/admin/reports/filter" class="form-inline" method="POST">
                         <label class="mr-sm-2" for="selDate">Date</label>
                         <select name="dateFilter" id="dateFilter" class="form-control mr-sm-2">
                             {{#select mydate}}
-                            <option value="--all--">--all--</option>
+                            <option value=""></option>
                             {{#each jobdates}}
-                            <option value="{{formatDate date 'DD/MM/YYYY'}}">{{formatDate date 'DD/MM/YY'}}</option>
+                            <option value="{{this}}">{{this}}</option>
                             {{/each}} {{/select}}
                         </select>
                         <input type='submit' value='Filter' class="btn btn-info btn-sm mr-sm-2">
                     </form>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
