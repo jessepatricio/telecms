@@ -5,7 +5,7 @@
 </div>
 {{/each}}
 
-<form action="/admin/jobs/edit/{{job.id}}?_method=PUT" method="POST">
+<form action="/admin/jobs/edit/{{job.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
@@ -68,6 +68,14 @@
             <div class="col-md-6">
                 <label for="inputComments">Comments</label>
                 <textarea name="comments" cols="30" rows="10" type="text" class="form-control" id="comments" placeholder="Enter comments">{{job.description}}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="file">Duct end Image</label>
+                <input type="file" name="file" class="form-control">
             </div>
         </div>
     </div>
