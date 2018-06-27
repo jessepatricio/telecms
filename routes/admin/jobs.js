@@ -10,6 +10,11 @@ const {
 } = require('../../helpers/admin-helpers');
 
 const Nexmo = require('nexmo');
+const {
+    isEmpty,
+    uploadDir
+} = require('../../helpers/upload-helpers');
+const fs = require('fs');
 
 let API_KEY = '248ebde6';
 let API_SECRET = 'b9n4iKmTgFVOV1T5';
@@ -68,6 +73,25 @@ router.get('/create', (req, res) => {
 
 router.post('/create', (req, res) => {
 
+    //console.log(req.files);
+    let filename = '';
+
+    //has file to upload
+    if (!isEmpty(req.files)) {
+
+        let file = req.files.file;
+        filename = Date.now() + '-' + file.name;
+        let dirUploads = './public/uploads/';
+
+        file.mv(dirUploads + filename, (err) => {
+
+            if (err) throw err;
+
+        });
+    }
+
+    //console.log(filename);
+
     let errors = [];
     if (errors.length > 0) {
 
@@ -77,7 +101,8 @@ router.post('/create', (req, res) => {
             task: req.body.task,
             user: req.body.user,
             comments: req.body.comments,
-            status: req.body.status
+            status: req.body.status,
+            file: filename
         });
 
     } else {
@@ -88,11 +113,11 @@ router.post('/create', (req, res) => {
             task: req.body.task,
             user: req.body.user,
             comments: req.body.comments,
+            file: filename,
             status: req.body.status,
             jobdate: formatDate(Date.now(), "DD/MM/YYYY"),
             addedby: req.user,
             modifiedby: req.user
-
         });
 
         newJob.save().then(savedJob => {
@@ -163,7 +188,25 @@ router.get('/edit/:id', (req, res) => {
 
 
 router.put('/edit/:id', (req, res) => {
-    //console.log(req.params.id);
+
+
+    //console.log(req.files);
+    let filename = '';
+
+    //has file to upload
+    if (!isEmpty(req.files)) {
+
+        let file = req.files.file;
+        filename = Date.now() + '-' + file.name;
+        let dirUploads = './public/uploads/';
+
+        file.mv(dirUploads + filename, (err) => {
+
+            if (err) throw err;
+
+        });
+    }
+
     Job.findOne({
         _id: req.params.id
     }).then(job => {
@@ -172,6 +215,7 @@ router.put('/edit/:id', (req, res) => {
         job.task = req.body.task;
         job.user = req.body.user;
         job.comments = req.body.comments;
+        job.file = req.body.filename;
         job.status = req.body.status;
         job.jobdate = formatDate(Date.now(), "DD/MM/YYYY");
         job.date = Date.now();
@@ -235,6 +279,13 @@ router.delete('/:id', (req, res) => {
             _id: req.params.id
         })
         .then(job => {
+            console.log(uploadDir + job.file);
+            if (job.file) {
+                fs.unlink(uploadDir + job.file, (err) => {
+
+                });
+            }
+
             job.remove().then(jobRemoved => {
                 req.flash('success_message', 'Job was successfully deleted!');
                 res.redirect('/admin/jobs');

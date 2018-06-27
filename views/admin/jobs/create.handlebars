@@ -5,7 +5,7 @@
 </div>
 {{/each}}
 
-<form action="/admin/jobs/create" method="POST">
+<form action="/admin/jobs/create" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
@@ -74,6 +74,14 @@
             <label for="allowComments" class="form-check-label">
                 <input name="allowNotify" type="checkbox" class="form-check-input" id="allowNotify"> Send Notification
             </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="file">Duct end Image</label>
+                <input type="file" name="file" class="form-control">
+            </div>
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-sm">Save</button>

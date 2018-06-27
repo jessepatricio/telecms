@@ -45,6 +45,10 @@ const JobSchema = new Schema({
         default: 'incomplete'
     },
 
+    file: {
+        type: String
+    },
+
     jobdate: {
         type: String,
         required: true

@@ -11,6 +11,7 @@ const {
     mongoDbURL
 } = require('./config/database');
 const passport = require('passport');
+const upload = require('express-fileupload');
 
 
 mongoose.Promise = global.Promise;
@@ -41,6 +42,9 @@ app.engine('handlebars', exphbs({
     }
 }));
 app.set('view engine', 'handlebars');
+
+//upload middleware
+app.use(upload());
 
 //body parser
 app.use(bodyParser.urlencoded({
