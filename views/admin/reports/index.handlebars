@@ -34,6 +34,7 @@
                             <th>Resource</th>
                             <th>Status</th>
                             <th>Comments</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,12 @@
                             <td>{{user.firstname}}</td>
                             <td>{{status}}</td>
                             <td>{{comments}}</td>
+                            <td>
+                                {{#if file}}
+                                <a href='/uploads/{{file}}' target="_blank">
+                                    <img height="50px" src='/uploads/{{file}}' />
+                                </a> {{/if}}
+                            </td>
                             {{!--
                             <td>{{formatDate date 'DD/MM/YYYY'}}</td> --}}
                         </tr>
