@@ -1,6 +1,5 @@
 <div class="row">
     <div class="container">
-
         <div class="row">
             <div class="col-sm">
                 <h2>Job List</h2>
@@ -59,9 +58,10 @@
                             <td>{{formatDate date 'DD/MM/YYYY h:mm a' }}</td>
                             <td>
                                 {{#if file}}
-                                <a href='/uploads/{{file}}' target="_blank">
-                                    <img height="50px" src='/uploads/{{file}}' />
-                                </a> {{/if}}
+
+                                <a href='https://s3.us-east-2.amazonaws.com/jd3-static-files/{{file}}' target="_blank">
+                                    <img height="50px" src='https://s3.us-east-2.amazonaws.com/jd3-static-files/{{file}}' />
+                                </a>{{/if}}
                             </td>
                             <td>
                                 <a href="/admin/jobs/edit/{{id}} " class="btn btn-info btn-sm ">Edit</a>
@@ -78,5 +78,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>
