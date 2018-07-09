@@ -104,7 +104,7 @@ router.post('/create', (req, res) => {
     //has file to upload
     if (!isEmpty(req.files)) {
 
-        console.log(req.files.file);
+        //console.log(req.files.file);
         file = req.files.file;
 
         filename = Date.now() + '-' + file.name;
