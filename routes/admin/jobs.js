@@ -52,6 +52,9 @@ router.all('/*', (req, res, next) => {
 router.get('/', (req, res) => {
     Job
         .find({})
+        .sort({
+            date: -1
+        })
         .populate('user', 'firstname')
         .populate('addedby', 'firstname')
         .populate('modifiedby', 'firstname')
