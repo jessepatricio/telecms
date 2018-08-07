@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
                 // jobdatesorted.distinct("jobdate").then(jobdates => {
                 //     //console.log(jobdates);
                 res.render('admin/reports', {
-                    jobdates: jobdates,
+                    jobdates: jobdates.reverse(),
                     jobs: jobs
                 });
 
