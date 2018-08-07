@@ -38,23 +38,10 @@ router.get('/', (req, res) => {
 
             Job.distinct("jobdate").then(jobdates => {
 
-                jobdates = jobdates.sort(function (a, b) {
-                    a = a.split('/').reverse().join('');
-                    b = b.split('/').reverse().join('');
-                    return a > b ? 1 : a < b ? -1 : 0;
-                });
-
-                //console.log(jobdates);
-                // jobdatesorted.distinct("jobdate").then(jobdates => {
-                //     //console.log(jobdates);
                 res.render('admin/reports', {
-                    jobdates: jobdates.reverse(),
+                    jobdates: sortArray(jobdates),
                     jobs: jobs
                 });
-
-                // }).catch(error => {
-                //     res.send("error distinct report!");
-                // });
 
             }).catch(error => {
                 res.send("error sorting report!");
@@ -91,16 +78,26 @@ router.post("/filter", (req, res) => {
             })
             .then(jobs => {
                 Job.distinct("jobdate").then(jobdates => {
-                    jobdates = jobdates.sort();
                     res.render('admin/reports', {
                         jobs: jobs,
-                        jobdates: jobdates.reverse(),
+                        jobdates: sortArray(jobdates),
                         mydate: req.body.dateFilter
                     });
                 });
             });
     }
 });
+
+function sortArray(jobdates) {
+
+
+    return jobdates.sort(function (a, b) {
+        a = a.split('/').reverse().join('');
+        b = b.split('/').reverse().join('');
+        return a > b ? 1 : a < b ? -1 : 0;
+    }).reverse();
+
+}
 
 
 module.exports = router;
