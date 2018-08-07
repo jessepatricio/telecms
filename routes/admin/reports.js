@@ -38,9 +38,7 @@ router.get('/', (req, res) => {
 
             Job.distinct("jobdate").then(jobdates => {
                 //console.log(jobdates);
-                jobdates = jobdates.sort({
-                    date: -1
-                });
+                jobdates = jobdates.sort('date');
                 //console.log(jobdates);
                 res.render('admin/reports', {
                     jobdates: jobdates,
