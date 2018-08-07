@@ -35,21 +35,37 @@ router.get('/', (req, res) => {
             }
         })
         .then(jobs => {
-            Job.find({}).sort("date").then(jobdatesorted => {
-                jobdatesorted.distinct("jobdate").then(jobdates => {
-                    //console.log(jobdates);
-                    res.render('admin/reports', {
-                        jobdates: jobdates,
-                        jobs: jobs
-                    });
-                }).catch(error => {
-                    res.send("error sorting report!");
+
+            Job.distinct("jobdate").then(jobdates => {
+
+                jobdates = jobdates.sort(function (a, b) {
+                    a = a.split('/').reverse().join('');
+                    b = b.split('/').reverse().join('');
+                    return a > b ? 1 : a < b ? -1 : 0;
                 });
+
+                //console.log(jobdates);
+                // jobdatesorted.distinct("jobdate").then(jobdates => {
+                //     //console.log(jobdates);
+                res.render('admin/reports', {
+                    jobdates: jobdates,
+                    jobs: jobs
+                });
+
+                // }).catch(error => {
+                //     res.send("error distinct report!");
+                // });
+
+            }).catch(error => {
+                res.send("error sorting report!");
             });
+
         }).catch(error => {
             res.send("error displaying report!");
         });
 });
+
+
 
 router.post("/filter", (req, res) => {
 
