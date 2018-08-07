@@ -246,21 +246,49 @@ router.get('/edit/:id', (req, res) => {
 router.put('/edit/:id', (req, res) => {
 
     //console.log(req.files);
+    let file = null;
     let filename = '';
+    let errors = [];
 
     //has file to upload
     if (!isEmpty(req.files)) {
 
-        let file = req.files.file;
+        //console.log(req.files.file);
+        file = req.files.file;
+
         filename = Date.now() + '-' + file.name;
-        let dirUploads = './public/uploads/';
 
-        file.mv(dirUploads + filename, (err) => {
-
-            if (err)
-                throw err;
+        //get presigned key to s3
+        const uploadConfig = s3.getSignedUrl('putObject', {
+            Bucket: S3_BUCKET,
+            ContentType: 'image/jpeg',
+            Key: filename
 
         });
+
+        //console.log(uploadConfig); upload file to bucket s3
+        if (uploadConfig) {
+
+            axios
+                .put(uploadConfig, file.data, {
+                    headers: {
+                        'Content-Type': file.mimetype
+                    }
+                })
+                .then(response => { //
+                    //console.log(response.data.url); console.log(response.data.explanation);
+                })
+                .catch(error => {
+                    console.log('error uploading file');
+                });
+        } else {
+            errors.push({
+                message: 'signed url denied!'
+            });
+        }
+
+
+
     }
 
     Job
@@ -273,12 +301,12 @@ router.put('/edit/:id', (req, res) => {
             job.task = req.body.task;
             job.user = req.body.user;
             job.comments = req.body.comments;
-            console.log(job.file + ":" + filename);
-            if (job.file !== filename && filename !== '') {
-                //remove old image first console.log('here');
-                fs.unlink(uploadDir + job.file, (err) => {});
-                job.file = filename;
-            }
+            // console.log(job.file + ":" + filename);
+            // if (job.file !== filename && filename !== '') {
+            //     //remove old image first console.log('here');
+            //     fs.unlink(uploadDir + job.file, (err) => {});
+            //     job.file = filename;
+            // }
 
             job.status = req.body.status;
             job.jobdate = formatDate(Date.now(), "DD/MM/YYYY");
