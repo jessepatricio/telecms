@@ -38,18 +38,22 @@ router.get('/', (req, res) => {
 
             Job.distinct("jobdate").then(jobdates => {
                 //console.log(jobdates);
-                jobdates = jobdates.sort();
+                jobdates = jobdates.sort({
+                    date: -1
+                });
                 //console.log(jobdates);
                 res.render('admin/reports', {
-                    jobdates: jobdates.reverse(),
+                    jobdates: jobdates,
                     jobs: jobs
                 });
             });
 
 
         }).catch(error => {
-            req.flash('error_message', 'error displaying jobs!');
-            res.redirect('admin/reports');
+
+            res.send("error displaying report!");
+
+
         });
 
 });
@@ -58,7 +62,7 @@ router.post("/filter", (req, res) => {
 
 
     if (!req.body.dateFilter) {
-        res.redirect("/admin/reports");
+        res.redirect("reports");
     } else {
 
 
