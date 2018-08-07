@@ -301,7 +301,7 @@ router.put('/edit/:id', (req, res) => {
             job.task = req.body.task;
             job.user = req.body.user;
             job.comments = req.body.comments;
-            job.filename = filename;
+            job.file = filename;
             // console.log(job.file + ":" + filename);
             // if (job.file !== filename && filename !== '') {
             //     //remove old image first console.log('here');
