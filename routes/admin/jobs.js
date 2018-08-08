@@ -305,13 +305,6 @@ router.put('/edit/:id', (req, res) => {
             job.user = req.body.user;
             job.comments = req.body.comments;
             job.file = filename;
-            // console.log(job.file + ":" + filename);
-            // if (job.file !== filename && filename !== '') {
-            //     //remove old image first console.log('here');
-            //     fs.unlink(uploadDir + job.file, (err) => {});
-            //     job.file = filename;
-            // }
-
             job.status = req.body.status;
             job.jobdate = formatDate(Date.now(), "DD/MM/YYYY");
             job.date = Date.now();
