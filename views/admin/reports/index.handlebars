@@ -6,7 +6,6 @@
                     <h2>Jobs Today</h2>
                 </div>
                 <div class="col-8 text-right">
-
                     <form action="/admin/reports/filter" class="form-inline" method="POST">
                         <label class="mr-sm-2" for="selDate">Date</label>
                         <select name="dateFilter" id="dateFilter" class="form-control mr-sm-2">
@@ -29,7 +28,7 @@
                     <thead>
                         <tr>
                             <th>Location</th>
-                            <th>Plan</th>
+                            <th>Addresses</th>
                             <th>Tasks</th>
                             <th>Resource</th>
                             <th>Status</th>
@@ -41,7 +40,7 @@
                         {{#each jobs}}
                         <tr>
                             <td>{{plan.location.name}}</td>
-                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Plan Information" data-content="Addresses: {{plan.instruction}}">{{plan.lno}}</td>
+                            <td>{{plan.streetno}} {{plan.streetname}}</td>
                             <td>{{task.description}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{status}}</td>

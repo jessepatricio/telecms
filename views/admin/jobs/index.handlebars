@@ -50,7 +50,7 @@
                         {{#each jobs}}
                         <tr>
                             <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Record Information" data-content="Created by {{addedby.firstname}} on {{formatDate timestamp 'DD/MM/YYYY h:mm a' }}. Updated by {{modifiedby.firstname}} on {{formatDate date 'DD/MM/YYYY h:mm a' }}">{{plan.location.name}}</td>
-                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Plan Information" data-content="Addresses: {{plan.instruction}}">{{plan.lno}}</td>
+                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Plan Information" data-content="Addresses: {{plan.streetno}} {{plan.streetname}}">{{plan.lno}}</td>
                             <td>{{task.description}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{status}}</td>

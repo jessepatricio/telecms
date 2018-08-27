@@ -13,6 +13,9 @@ router.get('/', (req, res) => {
     const page = req.query.page || 1;
 
     Plan.find({})
+        .sort({
+            date: -1
+        })
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .populate('location')
@@ -72,7 +75,9 @@ router.post('/create', (req, res) => {
             sheetno: req.body.sheetno,
             location: req.body.location,
             instruction: req.body.instruction,
-            code: req.body.code
+            code: req.body.code,
+            streetno: req.body.streetno,
+            streetname: req.body.streetname
         });
 
     } else {
@@ -83,7 +88,9 @@ router.post('/create', (req, res) => {
             sheetno: req.body.sheetno,
             location: req.body.location,
             instruction: req.body.instruction,
-            code: req.body.code
+            code: req.body.code,
+            streetno: req.body.streetno,
+            streetname: req.body.streetname
         });
 
         newPlan.save().then(savedPlan => {
@@ -117,6 +124,8 @@ router.put('/edit/:id', (req, res) => {
         plan.instruction = req.body.instruction;
         plan.location = req.body.location;
         plan.code = req.body.code;
+        plan.streetno = req.body.streetno;
+        plan.streetname = req.body.streetname;
         plan.save().then(updatedPlan => {
             req.flash('success_message', 'Plan was successfully updated!');
             res.redirect('/admin/plans');

@@ -11,9 +11,8 @@
                 <thead>
                     <tr>
                         <th>LNO</th>
-                        <th>SheetNo</th>
-                        <th>Instruction</th>
-                        <th>Code</th>
+                        <th>Street #</th>
+                        <th>Street Name</th>
                         <th>Location</th>
                         <th></th>
                         <th></th>
@@ -23,9 +22,8 @@
                     {{#each plans}}
                     <tr>
                         <td>{{lno}}</td>
-                        <td>{{sheetno}}</td>
-                        <td>{{instruction}}</td>
-                        <td>{{code}}</td>
+                        <td>{{streetno}}</td>
+                        <td>{{streetname}}</td>
                         <td>{{location.name}}</td>
                         <td>
                             <a href="/admin/plans/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>

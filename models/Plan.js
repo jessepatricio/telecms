@@ -31,6 +31,19 @@ const PlanSchema = new Schema({
         required: false
     },
 
+    streetno: {
+
+        type: String,
+        required: false
+
+    },
+
+    streetname: {
+
+        type: String,
+        required: false
+
+    },
 
     date: {
         type: Date,
