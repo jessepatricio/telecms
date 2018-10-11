@@ -3,7 +3,7 @@
 <form action="/admin/roles/edit/{{role.id}}?_method=PUT" method="POST">
     <div class="form-group">
         <label for="labelRole">Role</label>
-        <input name="rolename" type="text" class="form-control" value="{{role.rolename}}">
+        <input name="name" type="text" class="form-control" value="{{role.name}}">
     </div>
     <button type="submit" class="btn btn-primary btn-sm">Update Role</button>
     <a href="/admin/roles" class="btn btn-secondary btn-sm">Cancel</a>

@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const RoleSchema = new Schema({
 
     //fields
-
-    rolename: {
+    name: {
         type: String,
         required: true
     },

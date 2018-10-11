@@ -27,24 +27,24 @@
                 <table class="table-sm table-responsive table-bordered">
                     <thead>
                         <tr>
-                            <th>Location</th>
+                            <th>Cabinet</th>
                             <th>Addresses</th>
                             <th>Tasks</th>
                             <th>Resource</th>
                             <th>Status</th>
-                            <th>Comments</th>
+                            <th>Remarks</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each jobs}}
                         <tr>
-                            <td>{{plan.location.name}}</td>
-                            <td>{{plan.streetno}} {{plan.streetname}}</td>
-                            <td>{{task.description}}</td>
+                            <td>{{cabinet.name}}</td>
+                            <td>{{streetno}} {{streetname}}</td>
+                            <td>{{task.name}} {{#if withDig }} /Dig {{/if}} {{#if withBackfill}} /Backfill {{/if}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{status}}</td>
-                            <td>{{comments}}</td>
+                            <td>{{remarks}}</td>
                             <td>
                                 {{#if file}}
                                 <a href='https://s3.us-east-2.amazonaws.com/jd3-static-files/{{file}}' target="_blank">

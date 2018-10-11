@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const JobSchema = new Schema({
 
     //relationship
-
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
@@ -21,9 +20,9 @@ const JobSchema = new Schema({
         ref: 'users'
     },
 
-    plan: {
+    cabinet: {
         type: Schema.Types.ObjectId,
-        ref: 'plans'
+        ref: 'cabinets'
 
     },
 
@@ -34,10 +33,38 @@ const JobSchema = new Schema({
     },
 
     //fields
-
-    comments: {
+    lno: {
         type: String,
         required: false
+    },
+
+    withDig: {
+        type: Boolean,
+        default: false
+    },
+
+    withBackfill: {
+        type: Boolean,
+        default: false
+    },
+
+    remarks: {
+        type: String,
+        required: false
+    },
+
+    streetno: {
+
+        type: String,
+        required: false
+
+    },
+
+    streetname: {
+
+        type: String,
+        required: false
+
     },
 
     status: {

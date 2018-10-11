@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
 const Task = require('../../models/Task');
-const Plan = require('../../models/Plan');
+//const Plan = require('../../models/Plan');
 const Job = require('../../models/Job');
-const Location = require('../../models/Location');
+const Cabinet = require('../../models/Cabinet');
 const {
     formatDate
 } = require('../../helpers/admin-helpers');
@@ -19,7 +19,7 @@ const fs = require('fs');
 const axios = require('axios');
 
 //set s3 variables
-const S3_BUCKET = process.env.S3_BUCKET || 'jd3-static-files';
+const S3_BUCKET = process.env.S3_BUCKET || 'telecms-static-files';
 const AWS_KEYID = process.env.AWS_ACCESS_KEY_ID || 'AKIAJKP3VF7JNE5DKWBQ';
 const AWS_SECRET = process.env.AWS_SECRET_ACCESS_KEY || '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';
 
@@ -58,17 +58,15 @@ router.get('/', (req, res) => {
         .populate('user', 'firstname')
         .populate('addedby', 'firstname')
         .populate('modifiedby', 'firstname')
-        .populate('task', 'description')
-        .populate({
-            path: 'plan',
-            populate: {
-                path: 'location'
-            }
-        })
+        .populate('task', 'name')
+        .populate('cabinet', 'name')
         .then(jobs => {
+
+            //console.log(jobs);
             res.render('admin/jobs', {
                 jobs: jobs
             });
+
         });
 });
 
@@ -76,9 +74,9 @@ router.get('/create', (req, res) => {
     Job
         .find({})
         .then(jobs => {
-            Plan
+            Cabinet
                 .find({})
-                .then(plans => {
+                .then(cabinets => {
                     Task
                         .find({})
                         .then(tasks => {
@@ -87,7 +85,7 @@ router.get('/create', (req, res) => {
                                 .then(users => {
                                     res.render('admin/jobs/create', {
                                         jobs: jobs,
-                                        plans: plans,
+                                        cabinets: cabinets,
                                         tasks: tasks,
                                         users: users
                                     });
@@ -150,11 +148,16 @@ router.post('/create', (req, res) => {
 
         res.render('admin/jobs/create', {
             errors: errors,
-            plan: req.body.plan,
+            cabinet: req.body.cabinet,
             task: req.body.task,
             user: req.body.user,
-            comments: req.body.comments,
+            remarks: req.body.remarks,
             status: req.body.status,
+            lno: req.body.lno,
+            withDig: req.body.withDig,
+            withBackfill: req.body.withBackfill,
+            streetno: req.body.streetno,
+            streetname: req.body.streetname,
             file: filename
         });
 
@@ -162,12 +165,17 @@ router.post('/create', (req, res) => {
 
         //res.send('data was good');
         const newJob = new Job({
-            plan: req.body.plan,
+            cabinet: req.body.cabinet,
             task: req.body.task,
             user: req.body.user,
-            comments: req.body.comments,
+            remarks: req.body.remarks,
             file: filename,
             status: req.body.status,
+            lno: req.body.lno,
+            withDig: (req.body.withDig == 'on') ? true : false,
+            withBackfill: (req.body.withBackfill == 'on') ? true : false,
+            streetno: req.body.streetno,
+            streetname: req.body.streetname,
             jobdate: formatDate(Date.now(), "DD/MM/YYYY"),
             addedby: req.user,
             modifiedby: req.user
@@ -186,16 +194,11 @@ router.post('/create', (req, res) => {
                             _id: savedJob.id
                         })
                         .populate('user', 'firstname')
-                        .populate('task', 'description')
-                        .populate({
-                            path: 'plan',
-                            populate: {
-                                path: 'location'
-                            }
-                        })
+                        .populate('task', 'name')
+                        .populate('cabinet', 'cabinet')
                         .then(job => {
 
-                            let message = job.plan.location.name + '|' + job.plan.lno + '|' + job.task.description + '|' + job.user.firstname + '|' + job.date + '|' + job.status;
+                            let message = job.cabinet.name + '|' + job.lno + '|' + job.task.name + '|' + job.user.firstname + '|' + job.date + '|' + job.status;
 
                             nexmo
                                 .message
@@ -225,18 +228,19 @@ router.get('/edit/:id', (req, res) => {
             _id: req.params.id
         })
         .then(job => {
-            Plan
+            Cabinet
                 .find({})
-                .then(plans => {
+                .then(cabinets => {
                     Task
                         .find({})
                         .then(tasks => {
                             User
                                 .find({})
                                 .then(users => {
+                                    //console.log(job);
                                     res.render('admin/jobs/edit', {
                                         job: job,
-                                        plans: plans,
+                                        cabinets: cabinets,
                                         tasks: tasks,
                                         users: users
                                     });
@@ -300,12 +304,17 @@ router.put('/edit/:id', (req, res) => {
         })
         .then(job => {
 
-            job.plan = req.body.plan;
+            job.cabinet = req.body.cabinet;
             job.task = req.body.task;
             job.user = req.body.user;
-            job.comments = req.body.comments;
+            job.remarks = req.body.remarks;
             job.file = filename;
+            job.lno = req.body.lno;
+            job.withDig = (req.body.withDig == 'on') ? true : false;
+            job.withBackfill = (req.body.withBackfill == 'on') ? true : false;
             job.status = req.body.status;
+            job.streetno = req.body.streetno;
+            job.streetname = req.body.streetname;
             job.jobdate = formatDate(Date.now(), "DD/MM/YYYY");
             job.date = Date.now();
             job.modifiedby = req.user;
@@ -323,15 +332,10 @@ router.put('/edit/:id', (req, res) => {
                             .lean()
                             .populate('user', 'firstname')
                             .populate('task', 'description')
-                            .populate({
-                                path: 'plan',
-                                populate: {
-                                    path: 'location'
-                                }
-                            })
+                            .populate('cabinet', 'cabinet')
                             .then(job => {
 
-                                let message = job.plan.lno + '|' + job.task.description + '|' + job.user.firstname + '|' + job.date + '|' + job.status;
+                                let message = job.cabinet.name + '|' + job.lno + '|' + job.task.name + '|' + job.user.firstname + '|' + job.date + '|' + job.status;
 
                                 nexmo
                                     .message
@@ -370,7 +374,7 @@ router.delete('/:id', (req, res) => {
             _id: req.params.id
         })
         .then(job => {
-            console.log(uploadDir + job.file);
+            //console.log(uploadDir + job.file);
             if (job.file) {
                 fs.unlink(uploadDir + job.file, (err) => {});
             }

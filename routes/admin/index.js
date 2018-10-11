@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Cpa = require('../../models/Cpa');
+//const Cpa = require('../../models/Cpa');
 const Job = require('../../models/Job');
 //const bcrypt = require('bcryptjs');
 //const passport = require('passport');
@@ -8,18 +8,18 @@ const Job = require('../../models/Job');
 const {
     userAuthenticated
 } = require('../../helpers/authentication');
+
 //userAuthenticated
 router.all('/*', userAuthenticated, (req, res, next) => {
     req.app.locals.layout = 'admin';
     next();
 });
 
-
 router.get('/', (req, res) => {
 
     //console.log('Your in admin page.');
 
-    Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
+   /* Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
 
         let abffpid = (!req.body.abffpid) ? cpalocs[0] : req.body.abffpid;
 
@@ -66,13 +66,13 @@ router.get('/', (req, res) => {
         });
     });
 
-
-
+*/
+    res.render('admin/dashboard');
 });
 
 router.post('/', (req, res) => {
 
-
+/*
     Cpa.find({}).distinct('abffpid', (err, cpalocs) => {
 
         let abffpid = (!req.body.abffpid) ? cpalocs[0] : req.body.abffpid;
@@ -120,13 +120,9 @@ router.post('/', (req, res) => {
         });
     });
 
-
+*/
 
 });
-
-
-
-
 
 
 module.exports = router;

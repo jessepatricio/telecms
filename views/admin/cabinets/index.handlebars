@@ -1,28 +1,30 @@
 <div class="row">
-    <div class="col-sm-6">
-        <h2>Locations</h2>
+    <div class="col-sm-8">
+        <h2>Cabinets</h2>
         <div style="margin-bottom: 15px;">
-            <a href="/admin/locations/create" class="btn btn-success btn-sm">Create</a>
+            <a href="/admin/cabinets/create" class="btn btn-success btn-sm">Create</a>
         </div>
         <table class="table table-responsive table-hover">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Cabinet</th>
+                    <th>Laterals</th>
                     <th>Date</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {{#each locations}}
+                {{#each cabinets}}
                 <tr>
                     <td>{{name}}</td>
+                    <td>{{dropcount}}</td>
                     <td>{{formatDate date 'DD/MM/YYYY'}}</td>
                     <td>
-                        <a href="/admin/locations/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
+                        <a href="/admin/cabinets/edit/{{id}}" class="btn btn-info btn-sm">Edit</a>
                     </td>
                     <td>
-                        <form action="/admin/locations/{{id}}?_method=DELETE" method="post">
+                        <form action="/admin/cabinets/{{id}}?_method=DELETE" method="post">
                             <button class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>

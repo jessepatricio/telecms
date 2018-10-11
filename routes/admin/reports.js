@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
 const Task = require('../../models/Task');
-const Plan = require('../../models/Plan');
 const Job = require('../../models/Job');
-const Location = require('../../models/Location');
+const Cabinet = require('../../models/Cabinet');
 
 var moment = require('moment')
 
@@ -27,13 +26,8 @@ router.get('/', (req, res) => {
             }
         })
         .populate('user', 'firstname')
-        .populate('task', 'description')
-        .populate({
-            path: 'plan',
-            populate: {
-                path: 'location'
-            }
-        })
+        .populate('task', 'name')
+        .populate('cabinet', 'name')
         .then(jobs => {
 
             Job.distinct("jobdate").then(jobdates => {
@@ -69,13 +63,8 @@ router.post("/filter", (req, res) => {
         };
         Job.find(query)
             .populate('user', 'firstname')
-            .populate('task', 'description')
-            .populate({
-                path: 'plan',
-                populate: {
-                    path: 'location'
-                }
-            })
+            .populate('task', 'name')
+            .populate('cabinet', 'name')
             .then(jobs => {
                 Job.distinct("jobdate").then(jobdates => {
                     res.render('admin/reports', {

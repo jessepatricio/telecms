@@ -4,12 +4,7 @@ const Schema = mongoose.Schema;
 //define the schema
 const TaskSchema = new Schema({
 
-    code: {
-        type: String,
-        required: true
-    },
-
-    description: {
+    name: {
         type: String,
         required: true
     },

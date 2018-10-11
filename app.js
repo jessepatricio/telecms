@@ -13,19 +13,20 @@ const {
 const passport = require('passport');
 const upload = require('express-fileupload');
 
-
 mongoose.Promise = global.Promise;
 console.log('Connecting to ' + mongoDbURL);
-mongoose.connect(mongoDbURL).then((db) => {
+mongoose.connect(mongoDbURL, {
+    useNewUrlParser: true
+}).then((db) => {
     console.log('MONGO connected');
 }).catch(error => console.log(`ERROR CONNECTING TO MONGODB: ` + error));
+mongoose.set('useCreateIndex', true);
 
 //using static (enable use of css/js/etc)
 app.use(express.static(path.join(__dirname, 'public')));
 
 //use helpers function
 const {
-
     select,
     formatDate,
     paginate
@@ -35,7 +36,6 @@ const {
 app.engine('handlebars', exphbs({
     defaultLayout: 'admin',
     helpers: {
-
         select: select,
         formatDate: formatDate,
         paginate: paginate
@@ -62,11 +62,10 @@ const admin = require('./routes/admin/index');
 const tasks = require('./routes/admin/tasks');
 const users = require('./routes/admin/users');
 const roles = require('./routes/admin/roles');
-const locations = require('./routes/admin/locations');
-const plans = require('./routes/admin/plans');
+const cabinets = require('./routes/admin/cabinets');
 const jobs = require('./routes/admin/jobs');
-const cpas = require('./routes/admin/cpas');
 const reports = require('./routes/admin/reports');
+const reinstatements = require('./routes/admin/reinstatements');
 
 //session
 app.use(session({
@@ -97,11 +96,10 @@ app.use('/admin', admin);
 app.use('/admin/users', users);
 app.use('/admin/tasks', tasks);
 app.use('/admin/roles', roles);
-app.use('/admin/locations', locations);
-app.use('/admin/plans', plans);
+app.use('/admin/cabinets', cabinets);
 app.use('/admin/jobs', jobs);
-app.use('/admin/cpas', cpas);
 app.use('/admin/reports', reports);
+app.use('/admin/reinstatements', reinstatements);
 
 
 const port = process.env.PORT || 8888;

@@ -4,8 +4,11 @@ body {
 
 .bg {
     /* img background */
+    /* 
     background-image: url("../uploads/jd3bg.jpg");
     background-size: cover;
+    */
+    background-color: aliceblue;
 }
 
 .semi_transparent {
@@ -18,19 +21,27 @@ body {
     body {
         padding-top: 75px;
     }
+
     .bg {
         /* img background */
+        /*
         background-image: url("../uploads/jd3bg.jpg");
         background-size: cover;
+        */
+        background-color: aliceblue;
     }
 }
 
 @media (min-width: 100px) and (max-width: 518px) {
     .bg {
         /* img background */
+        /*
         background-image: url("../uploads/jd3bg.jpg");
         background-size: 20% auto;
+        */
+        background-color: aliceblue;
     }
+
     .semi_transparent {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         filter: alpha(opacity=50);

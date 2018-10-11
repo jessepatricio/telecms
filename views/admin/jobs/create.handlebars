@@ -6,20 +6,31 @@
 {{/each}}
 
 <form action="/admin/jobs/create" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-3">
+                <label for="labellno">Lateral No. (optional)</label>
+                <input name="lno" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
-                <label for="inputPlan">Plan</label>
-                <select name="plan" id="plan" class="form-control">
+                <label for="inputPlan">Cabinet</label>
+                <select name="cabinet" id="cabinet" class="form-control">
 
-                    {{#each plans}}
-                    <option value="{{id}}">{{lno}}</option>
+                    {{#each cabinets}}
+                    <option value="{{id}}">{{name}}</option>
                     {{/each}}
 
                 </select>
             </div>
         </div>
     </div>
+
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
@@ -27,13 +38,51 @@
                 <select name="task" id="task" class="form-control">
 
                     {{#each tasks}}
-                    <option value="{{id}}">{{description}}</option>
+                    <option value="{{id}}">{{name}}</option>
                     {{/each}}
 
                 </select>
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-check">
+                    With <label for="withDig" class="form-check-label">
+                        <input name="withDig" type="checkbox" class="form-check-input" id="withDig"> Dig
+                    </label> |
+                    <label for="withBackfill" class="form-check-label">
+                        <input name="withBackfill" type="checkbox" class="form-check-input" id="withBackfill"> Backfill
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-3">
+                <label for="labelstreetno">Street No.</label>
+                <input name="streetno" type="text" class="form-control" required>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-3">
+                <label for="labelstreetname">Street Name</label>
+                <input name="streetname" type="text" class="form-control" required>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
@@ -48,6 +97,8 @@
             </div>
         </div>
     </div>
+
+
 
     <div class="form-group">
         <div class="form-row">
@@ -64,8 +115,8 @@
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
-                <label for="comments">Comments</label>
-                <textarea name="comments" cols="30" rows="10" type="text" class="form-control" id="comments" placeholder="Enter comments"></textarea>
+                <label for="remarks">Remarks</label>
+                <textarea name="remarks" cols="30" rows="10" type="text" class="form-control" id="remarks" placeholder="Enter remark"></textarea>
             </div>
         </div>
     </div>
@@ -79,7 +130,7 @@
     <div class="form-group">
         <div class="form-row">
             <div class="col-md-6">
-                <label for="file">Duct end Image</label>
+                <label for="file">Job Image</label>
                 <input type="file" name="file" accept="image/*" id="file" class="form-control">
             </div>
         </div>

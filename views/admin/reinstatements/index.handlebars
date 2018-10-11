@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <h2>Job List</h2>
+                <h2>Reinstatement List</h2>
             </div>
             <div class="col-sm">
                 <div class="form-group">
-                    <a href="/admin/jobs/create" class="btn btn-success btn-sm">Create</a>
+                    <a href="/admin/reinstatement/create" class="btn btn-success btn-sm">Create</a>
                 </div>
                 <div class="form-group">
 
@@ -35,11 +35,8 @@
                     <thead>
                         <tr>
                             <th>Cabinet</th>
-                            <th>Addresses</th>
-                            <th>Tasks</th>
-                            <th>Resource</th>
-                            <th>Status</th>
-                            <th>Remarks</th>
+                            <th>Address</th>
+                            <th>Area</th>
                             <th>Date</th>
                             <th></th>
                             <th></th>
@@ -51,20 +48,12 @@
                         <tr>
                             <td>{{cabinet.name}}</td>
                             <td>{{streetno}} {{streetname}}</td>
-                            {{!-- <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Record Information"
-                                data-content="Created by {{addedby.firstname}} on {{formatDate timestamp 'DD/MM/YYYY h:mm a' }}. Updated by {{modifiedby.firstname}} on {{formatDate date 'DD/MM/YYYY h:mm a' }}">{{cabinet.name}}</td>
-                            <td tabindex="{{_id}}" data-toggle="popover" data-trigger="focus" title="Job Information"
-                                data-content="Addresses: {{streetno}} {{streetname}}">{{lno}}</td> --}}
-                            <td>{{task.name}} {{#if withDig }} /Dig {{/if}} {{#if withBackfill}} /Backfill {{/if}}</td>
-                            <td>{{user.firstname}}</td>
-                            <td>{{status}}</td>
-                            <td>{{remarks}}</td>
+                            <td>L:{{length}} W:{{width}}</td>
                             <td>{{formatDate date 'DD/MM/YYYY h:mm a' }}</td>
                             <td>
                                 {{#if file}}
-
-                                <a href='https://s3.us-east-2.amazonaws.com/jd3-static-files/{{file}}' target="_blank">
-                                    <img height="50px" src='https://s3.us-east-2.amazonaws.com/jd3-static-files/{{file}}' />
+                                <a href='https://s3.us-east-2.amazonaws.com/telecms-static-files/{{file}}' target="_blank">
+                                    <img height="50px" src='https://s3.us-east-2.amazonaws.com/telecms-static-files/{{file}}' />
                                 </a>{{/if}}
                             </td>
                             <td>

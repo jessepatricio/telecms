@@ -1,3 +1,3 @@
 module.exports = {
-    mongoDbURL: 'mongodb://localhost:27017/dar'
+    mongoDbURL: 'mongodb://localhost:27017/telecmsdb'
 };

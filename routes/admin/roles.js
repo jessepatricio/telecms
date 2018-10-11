@@ -27,9 +27,9 @@ router.post('/create', (req, res) => {
 
     let errors = [];
 
-    console.log(req.body.role);
+    //console.log(req.body.role);
 
-    if (!req.body.rolename) {
+    if (!req.body.name) {
         errors.push({
             message: 'please enter your role'
         });
@@ -39,14 +39,14 @@ router.post('/create', (req, res) => {
 
         res.render('admin/roles/create', {
             errors: errors,
-            role: req.body.rolename,
+            role: req.body.name,
         });
 
     } else {
 
         //res.send('data was good');
         const newRole = new Role({
-            rolename: req.body.rolename,
+            name: req.body.name,
         });
 
         newRole.save().then(savedRole => {
@@ -72,7 +72,7 @@ router.put('/edit/:id', (req, res) => {
         _id: req.params.id
     }).then(role => {
 
-        role.rolename = req.body.rolename;
+        role.name = req.body.name;
         role.save().then(updatedRole => {
             req.flash('success_message', 'Role was successfully updated!');
             res.redirect('/admin/roles');

@@ -40,15 +40,9 @@ router.post('/create', (req, res) => {
 
     //console.log(req.body.code);
 
-    if (!req.body.code) {
+    if (!req.body.name) {
         errors.push({
-            message: 'please enter your code'
-        });
-    }
-
-    if (!req.body.description) {
-        errors.push({
-            message: 'please add description'
+            message: 'please add name'
         });
     }
 
@@ -57,16 +51,14 @@ router.post('/create', (req, res) => {
 
         res.render('admin/tasks/create', {
             errors: errors,
-            code: req.body.code,
-            description: req.body.description
+            name: req.body.name
         });
 
     } else {
 
         //res.send('data was good');
         const newTask = new Task({
-            code: req.body.code,
-            description: req.body.description
+            name: req.body.name
         });
 
         newTask.save().then(savedTask => {
@@ -92,8 +84,7 @@ router.put('/edit/:id', (req, res) => {
         _id: req.params.id
     }).then(task => {
 
-        task.code = req.body.code;
-        task.description = req.body.description;
+        task.name = req.body.name;
         task.save().then(updatedTask => {
             req.flash('success_message', 'Task was successfully updated!');
             res.redirect('/admin/tasks');
