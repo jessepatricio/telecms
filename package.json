@@ -1,7 +1,7 @@
 {
-  "name": "tcms",
+  "name": "tcts",
   "version": "1.0.0",
-  "description": "telecom cabinet management system and tracking tool",
+  "description": "telecom cabinet tracking system and tracking tool",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
