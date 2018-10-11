@@ -1,7 +1,7 @@
 {
-  "name": "jd3dailyupdate",
+  "name": "tcms",
   "version": "1.0.0",
-  "description": "record jd3 daily activity",
+  "description": "telecom cabinet management system and tracking tool",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
