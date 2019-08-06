@@ -1,4 +1,5 @@
 # telecms
-telecom cabinet management and tracking system
+telecom cabinet management and tracking system using amazon s2 as image repository.
 
-Help telecom contractors manage day-to-day tasks and job status.
+
+The online web application help telecom contractors to manage and monitor day-to-day tasks and jobs status.
