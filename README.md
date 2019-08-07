@@ -3,6 +3,8 @@ Telecom cabinet management and tracking system is an online web application help
 
 Deployed in heroku app and mongodb database repositories reside in mlab.com. Utilise Amazon S3 web services for image repositories.
 
+Techstack: ReactJS, MongoDB, Mongoose, Express, and other support libraries and UI frameworks.
+
 Login page here "https://jd3dar.herokuapp.com/login"
 
 <p align="center">
