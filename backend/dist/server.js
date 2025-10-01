@@ -37,10 +37,16 @@ app.get('/health', (_req, res) => {
         environment: process.env['NODE_ENV'] || 'development'
     });
 });
+const swagger_1 = require("@/middleware/swagger");
 const authRoutes_1 = __importDefault(require("@/routes/authRoutes"));
 const userRoutes_1 = __importDefault(require("@/routes/userRoutes"));
+const imageRoutes_1 = __importDefault(require("@/routes/imageRoutes"));
+app.use('/api-docs', swagger_1.swaggerUiHandler, swagger_1.swaggerUiSetup);
+app.get('/api-docs.json', swagger_1.swaggerJsonHandler);
+app.get('/api-docs/health', swagger_1.swaggerHealthHandler);
 app.use('/api/auth', authRoutes_1.default);
 app.use('/api/users', userRoutes_1.default);
+app.use('/api/images', imageRoutes_1.default);
 app.use(errorHandler_1.notFound);
 app.use(errorHandler_1.errorHandler);
 const startServer = async () => {

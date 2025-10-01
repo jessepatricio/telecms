@@ -12,8 +12,10 @@ const corsOptions = {
             process.env['CORS_ORIGIN'] || 'http://localhost:3001',
             'http://localhost:3000',
             'http://localhost:3001',
+            'http://localhost:8888',
             'http://127.0.0.1:3001',
-            'http://127.0.0.1:3000'
+            'http://127.0.0.1:3000',
+            'http://127.0.0.1:8888'
         ];
         if (allowedOrigins.includes(origin)) {
             callback(null, true);

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.swaggerHealthHandler = exports.swaggerUiHtmlHandler = exports.swaggerJsonHandler = exports.swaggerUiHandler = void 0;
+exports.swaggerHealthHandler = exports.swaggerUiHtmlHandler = exports.swaggerJsonHandler = exports.swaggerUiSetup = exports.swaggerUiHandler = void 0;
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_1 = __importDefault(require("@/config/swagger"));
 const swaggerUiOptions = {
@@ -33,7 +33,8 @@ const swaggerUiOptions = {
         }
     }
 };
-exports.swaggerUiHandler = swagger_ui_express_1.default.setup(swagger_1.default, swaggerUiOptions);
+exports.swaggerUiHandler = swagger_ui_express_1.default.serve;
+exports.swaggerUiSetup = swagger_ui_express_1.default.setup(swagger_1.default, swaggerUiOptions);
 const swaggerJsonHandler = (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(swagger_1.default);

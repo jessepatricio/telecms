@@ -333,3 +333,38 @@
 {"level":"info","message":"::1 - - [01/Oct/2025:05:15:45 +0000] \"GET /api/auth/verify HTTP/1.1\" 304 - \"http://localhost:3001/dashboard\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36\"","service":"tcts-api","timestamp":"2025-10-01 18:15:45"}
 {"level":"info","message":"::1 - - [01/Oct/2025:05:15:46 +0000] \"GET /api/users HTTP/1.1\" 304 - \"http://localhost:3001/users\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36\"","service":"tcts-api","timestamp":"2025-10-01 18:15:46"}
 {"level":"info","message":"::1 - - [01/Oct/2025:05:15:46 +0000] \"GET /api/users HTTP/1.1\" 304 - \"http://localhost:3001/users\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36\"","service":"tcts-api","timestamp":"2025-10-01 18:15:46"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:20:22"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:20:22"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:20:22"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:20:22"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:20:22"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:20:51"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:20:51"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:20:51"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:20:51"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:20:52"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:21:10"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:21:10"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:21:10"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:21:10"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:21:10"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:22:36"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:22:36"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:22:36"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:22:36"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:22:44"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:22:44"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:22:44"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:22:44"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:22:44"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:22:52"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:22:52"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:22:52"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:22:52"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:22:52"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:23:02"}
+{"level":"info","message":"🚀 Server running on port 8888","service":"tcts-api","timestamp":"2025-10-01 18:23:02"}
+{"level":"info","message":"📊 Health check available at http://localhost:8888/health","service":"tcts-api","timestamp":"2025-10-01 18:23:02"}
+{"level":"info","message":"🌍 Environment: development","service":"tcts-api","timestamp":"2025-10-01 18:23:02"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:23:02"}
+{"level":"info","message":"Database connected successfully","service":"tcts-api","timestamp":"2025-10-01 18:23:22"}

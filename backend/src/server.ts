@@ -57,6 +57,7 @@ import { swaggerUiHandler, swaggerUiSetup, swaggerJsonHandler, swaggerHealthHand
 // Import routes
 import authRoutes from '@/routes/authRoutes';
 import userRoutes from '@/routes/userRoutes';
+import imageRoutes from '@/routes/imageRoutes';
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUiHandler, swaggerUiSetup);
@@ -66,6 +67,7 @@ app.get('/api-docs/health', swaggerHealthHandler);
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/images', imageRoutes);
 // app.use('/api/tasks', taskRoutes);
 // app.use('/api/roles', roleRoutes);
 // app.use('/api/cabinets', cabinetRoutes);

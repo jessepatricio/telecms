@@ -81,7 +81,35 @@ export const errorHandler = (
     message = 'Token has expired';
   } else if (error.name === 'MulterError') {
     statusCode = 400;
-    message = 'File upload error';
+    
+    // Handle specific multer error codes
+    const multerError = error as any; // Type assertion for multer error
+    switch (multerError.code) {
+      case 'LIMIT_FILE_SIZE':
+        message = 'File too large. Maximum size is 10MB.';
+        statusCode = 413;
+        break;
+      case 'LIMIT_FILE_COUNT':
+        message = 'Too many files. Maximum is 5 files.';
+        break;
+      case 'LIMIT_UNEXPECTED_FILE':
+        message = 'Unexpected field name in file upload.';
+        break;
+      case 'LIMIT_PART_COUNT':
+        message = 'Too many parts in the multipart request.';
+        break;
+      case 'LIMIT_FIELD_COUNT':
+        message = 'Too many fields in the request.';
+        break;
+      case 'LIMIT_FIELD_KEY':
+        message = 'Field name too long.';
+        break;
+      case 'LIMIT_FIELD_VALUE':
+        message = 'Field value too long.';
+        break;
+      default:
+        message = 'File upload error occurred.';
+    }
   }
 
   // Don't leak error details in production
