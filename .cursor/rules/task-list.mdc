@@ -1,0 +1,149 @@
+---
+alwaysApply: true
+---
+
+# Telecom Cabinet Tracking System (TCTS) - MVP Migration Tasks
+
+## 🏗️ Phase 1: Infrastructure & Foundation
+### 1. Development Environment Setup
+- [x] Configure Docker PostgreSQL container
+- [x] Set up environment variables (.env)
+- [x] Configure Vite build system
+- [x] Set up TypeScript configuration
+- [ ] Configure ESLint and Prettier
+
+### 2. Database & Backend Foundation
+- [x] Run Prisma migrations
+- [x] Set up database seeding scripts
+- [x] Configure Prisma client
+- [x] Test database connectivity
+- [x] Set up API route structure
+
+## 🔐 Phase 2: Authentication & Security
+### 3. Authentication System
+- [x] Implement JWT token management
+- [x] Create login/logout functionality
+- [x] Set up protected routes
+- [ ] Implement token refresh mechanism
+- [ ] Add session management
+
+### 4. User Interface Foundation
+- [x] Create responsive layout component
+- [x] Implement navigation sidebar
+- [x] Set up Bootstrap/Tailwind CSS
+- [x] Create loading states and error boundaries
+- [x] Implement responsive design
+
+## 👥 Phase 3: Core User Management
+### 5. User Management System
+- [x] User CRUD operations (Create, Read, Update, Delete)
+- [x] User list with pagination and search
+- [ ] User profile management
+- [ ] Password reset functionality
+- [ ] User status management
+
+### 6. Role-Based Access Control
+- [x] Role management interface
+- [x] Permission system implementation
+- [x] Role assignment to users
+- [x] Access control middleware
+- [x] Role-based UI rendering
+
+## 📦 Phase 4: Core Business Logic
+### 7. Cabinet Management
+- [x] Cabinet CRUD operations
+- [x] Cabinet location tracking
+- [x] Cabinet status management
+- [x] Cabinet search and filtering
+- [x] Cabinet assignment to jobs
+
+### 8. Task Management System
+- [x] Task creation and assignment
+- [x] Task status tracking
+- [x] Task due date management
+- [x] Task priority system
+- [x] Task progress monitoring
+
+### 9. Job Management System
+- [x] Job creation and assignment
+- [x] Job status workflow
+- [x] Job-cabinet relationships
+- [x] Job file attachments
+- [x] Job completion tracking
+
+## 🔧 Phase 5: Advanced Features
+### 10. Reinstatement System
+- [x] Reinstatement tracking
+- [x] Street location management
+- [x] Measurement tracking (length/width)
+- [x] Reinstatement completion workflow
+- [x] Image documentation
+
+### 11. File & Image Management
+- [x] File upload functionality
+- [x] Image processing and storage
+- [x] File association with jobs/reinstatements
+- [x] File download and preview
+- [x] File size and type validation
+
+### 12. Reporting & Analytics
+- [x] Dashboard with key metrics
+- [x] Job completion reports
+- [x] User activity reports
+- [x] Cabinet status reports
+- [ ] Export functionality (PDF/Excel)
+
+## 🔗 Phase 6: Integration & Polish
+### 13. API Integration
+- [x] Connect all frontend components to backend APIs
+- [x] Implement proper error handling
+- [x] Add loading states for all operations
+- [ ] Optimize API calls and caching
+- [ ] Implement real-time updates
+
+### 14. Form Validation & UX
+- [ ] Client-side form validation
+- [ ] Server-side validation feedback
+- [ ] User-friendly error messages
+- [ ] Success notifications
+- [ ] Form auto-save functionality
+
+### 15. Testing & Quality Assurance
+- [ ] Unit tests for components
+- [ ] Integration tests for API calls
+- [ ] End-to-end testing
+- [ ] Performance optimization
+- [ ] Accessibility compliance
+
+## 🚀 Phase 7: Deployment & Production
+### 16. Production Setup
+- [ ] Docker containerization
+- [ ] Environment configuration
+- [ ] Database backup strategy
+- [ ] SSL certificate setup
+- [ ] Performance monitoring
+
+### 17. Documentation & Maintenance
+- [ ] User documentation
+- [ ] API documentation
+- [ ] Deployment guide
+- [ ] Maintenance procedures
+- [ ] Backup and recovery procedures
+
+## 📋 Priority Levels
+- **🔴 Critical (MVP)**: Tasks 1-9 (Infrastructure, Auth, Core Management) - **MOSTLY COMPLETE**
+- **🟡 Important**: Tasks 10-13 (Advanced Features, Integration) - **MOSTLY COMPLETE**
+- **🟢 Nice to Have**: Tasks 14-17 (Polish, Testing, Documentation)
+
+## 🚨 Current Issues to Fix
+- [ ] **TypeScript compilation errors** - Backend has multiple TS errors preventing server startup
+- [ ] **Server startup issues** - Need to fix compilation errors first
+- [ ] **API endpoint testing** - Cannot test until server runs properly
+- [ ] **Frontend integration testing** - Need working backend to test
+
+## 🎯 Success Criteria
+- [ ] Users can log in and access the system
+- [ ] All CRUD operations work for Users, Roles, Cabinets, Tasks, Jobs
+- [ ] File uploads and image management functional
+- [ ] Basic reporting dashboard operational
+- [ ] System deployed and accessible in production

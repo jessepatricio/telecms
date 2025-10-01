@@ -1,0 +1,156 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  permissions Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  users User[]
+
+  @@map("roles")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  firstname String
+  lastname  String
+  email     String   @unique
+  password  String
+  roleId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  role           Role            @relation(fields: [roleId], references: [id], onDelete: SetNull)
+  assignedTasks  Task[]          @relation("TaskAssignedTo")
+  assignedJobs   Job[]           @relation("JobAssignedTo")
+  addedJobs      Job[]           @relation("JobAddedBy")
+  modifiedJobs   Job[]           @relation("JobModifiedBy")
+  reinstatements Reinstatement[] @relation("ReinstatementAssignedTo")
+
+  @@map("users")
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  status      String   @default("pending")
+  assignedToId Int?
+  dueDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  assignedTo User? @relation("TaskAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  jobs       Job[]
+
+  @@map("tasks")
+}
+
+model Cabinet {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  location  String?
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  jobs          Job[]
+  reinstatements Reinstatement[]
+
+  @@map("cabinets")
+}
+
+model Job {
+  id           Int      @id @default(autoincrement())
+  title        String
+  description  String?
+  status       String   @default("pending")
+  assignedToId Int?
+  addedById    Int?
+  modifiedById Int?
+  cabinetId    Int?
+  taskId       Int?
+  lno          String?
+  withDig      Boolean  @default(false)
+  withBackfill Boolean  @default(false)
+  remarks      String?
+  streetNo     String?
+  streetName   String?
+  file         String?
+  imageUrl     String?
+  jobDate      String?
+  dueDate      DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  assignedTo User?  @relation("JobAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  addedBy    User?  @relation("JobAddedBy", fields: [addedById], references: [id], onDelete: SetNull)
+  modifiedBy User?  @relation("JobModifiedBy", fields: [modifiedById], references: [id], onDelete: SetNull)
+  cabinet    Cabinet? @relation(fields: [cabinetId], references: [id], onDelete: SetNull)
+  task       Task?   @relation(fields: [taskId], references: [id], onDelete: SetNull)
+  images     Image[]
+
+  @@map("jobs")
+}
+
+model Reinstatement {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String?
+  status        String   @default("pending")
+  assignedToId  Int?
+  cabinetId     Int?
+  streetNo      String?
+  streetName    String?
+  length        Decimal? @db.Decimal(10, 2)
+  width         Decimal? @db.Decimal(10, 2)
+  file          String?
+  completedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  assignedTo User?    @relation("ReinstatementAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+  cabinet    Cabinet? @relation(fields: [cabinetId], references: [id], onDelete: SetNull)
+  images     Image[]
+
+  @@map("reinstatements")
+}
+
+model Image {
+  id              Int      @id @default(autoincrement())
+  filename        String
+  originalName    String
+  mimeType        String
+  size            Int
+  data            String   @db.Text
+  jobId           Int?
+  reinstatementId Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  job           Job?           @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  reinstatement Reinstatement? @relation(fields: [reinstatementId], references: [id], onDelete: Cascade)
+
+  @@map("images")
+}

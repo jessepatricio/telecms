@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const authController_1 = require("@/controllers/authController");
+const auth_1 = require("@/middleware/auth");
+const rateLimiter_1 = require("@/middleware/rateLimiter");
+const validation_1 = require("@/middleware/validation");
+const router = (0, express_1.Router)();
+router.use(rateLimiter_1.authRateLimit);
+router.post('/login', validation_1.validateLogin, authController_1.authController.login);
+router.post('/register', validation_1.validateRegister, authController_1.authController.register);
+router.post('/refresh', authController_1.authController.refreshToken);
+router.use(auth_1.authenticate);
+router.get('/verify', authController_1.authController.verifyToken);
+router.get('/profile', authController_1.authController.getProfile);
+router.put('/profile', authController_1.authController.updateProfile);
+router.put('/change-password', authController_1.authController.changePassword);
+router.post('/logout', authController_1.authController.logout);
+exports.default = router;
+//# sourceMappingURL=authRoutes.js.map

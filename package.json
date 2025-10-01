@@ -1,29 +1,47 @@
 {
   "name": "tcts",
   "version": "1.0.0",
-  "description": "telecom cabinet tracking system and tracking tool",
-  "main": "app.js",
+  "description": "Telecom Cabinet Tracking System - Full Stack Application",
+  "private": true,
   "scripts": {
-    "start": "node app.js"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run preview",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "setup": "npm run install:all && cd backend && npm run db:generate && npm run db:push && npm run db:seed",
+    "db:generate": "cd backend && npm run db:generate",
+    "db:push": "cd backend && npm run db:push",
+    "db:seed": "cd backend && npm run db:seed",
+    "db:reset": "cd backend && npm run db:reset",
+    "clean": "rm -rf backend/dist frontend/dist",
+    "clean:install": "npm run clean && npm run install:all"
   },
-  "author": "jesse patricio",
-  "license": "ISC",
-  "dependencies": {
-    "aws-sdk": "^2.265.1",
-    "axios": "^0.18.0",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "connect-flash": "^0.1.1",
-    "express": "^4.16.3",
-    "express-fileupload": "^0.4.0",
-    "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.6",
-    "method-override": "^2.3.10",
-    "moment": "^2.22.1",
-    "mongoose": "^5.1.2",
-    "nexmo": "^2.2.1",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "s3fs": "^2.5.0"
-  }
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "keywords": [
+    "telecom",
+    "cabinet",
+    "tracking",
+    "react",
+    "nodejs",
+    "typescript",
+    "postgresql"
+  ],
+  "author": "Jesse Patricio",
+  "license": "ISC"
 }

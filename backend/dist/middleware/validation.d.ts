@@ -1,0 +1,19 @@
+import { Request, Response, NextFunction } from 'express';
+export declare const handleValidationErrors: (req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>;
+export declare const validateLogin: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateRegister: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateCreateUser: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateUpdateUser: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateCreateRole: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateUpdateRole: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateCreateTask: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateUpdateTask: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateCreateCabinet: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateUpdateCabinet: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateCreateJob: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateUpdateJob: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateCreateReinstatement: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateUpdateReinstatement: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validateId: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+export declare const validatePagination: (((req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>) | import("express-validator").ValidationChain)[];
+//# sourceMappingURL=validation.d.ts.map
